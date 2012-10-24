@@ -7,7 +7,6 @@ Build
 cd cyrilqc-core
 ./gradle clean all
 
-
 Run
 ---
 unzip cyrilqc-*.zip
