@@ -1,3 +1,4 @@
+# CyrilQC TODO
 - display column of difference by assertFileEquals
 - execute targets beforeModule and afterModule
 - each test must be excuted with clean project - no property set and no target executed
@@ -26,6 +27,6 @@
 	- gooddata integration - better history statistics
 - eclipse integration
 - load multiple configuration files - one toplevel element in eclipse junit view (low priority, workaround by ant import)
-- CyrilQC Cloud 
+- CyrilQC Cloud
 	- free edition
-	- commercial edition 
+	- commercial edition
