@@ -1,0 +1,21 @@
+Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: X.XX sec
+------------- Standard Output ---------------
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                   CyrilQC                                    :
+:  Loading project XXX/cyrilqc-simple.xml
+:  Found testSimple                                                            :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                  testSimple                                  :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+testSimple:
+     [echo] THIS IS SIMPLE TEST
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+------------- ---------------- ---------------
+
+Testcase: testSimple took X.XX sec

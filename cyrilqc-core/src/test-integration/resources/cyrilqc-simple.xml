@@ -1,0 +1,5 @@
+<project>
+	<target name="testSimple">
+		<echo>THIS IS SIMPLE TEST</echo>
+	</target>
+</project>

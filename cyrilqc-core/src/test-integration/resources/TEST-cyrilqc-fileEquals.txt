@@ -1,0 +1,70 @@
+Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
+Tests run: 3, Failures: 1, Errors: 1, Time elapsed: X.XX sec
+------------- Standard Output ---------------
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                   CyrilQC                                    :
+:  Loading project XXX/cyrilqc-fileEquals.xml
+:  Project name test-integration-many                                          :
+:  Found testBothNonExisting                                                   :
+:  Found testDiffer                                                            :
+:  Found testSame                                                              :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                             testBothNonExisting                              :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+testBothNonExisting:
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                  testDiffer                                  :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+testDiffer:
+[cqc:assertFileEquals] Comparing text files data/mountains.txt and data/mountains-8000.txt
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                   testSame                                   :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+testSame:
+[cqc:assertFileEquals] Comparing text files data/mountains.txt and data/mountains.txt
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+
+BUILD FAILED
+/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:17: Expected file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/nnn not found
+
+Total time: 0 seconds
+
+BUILD FAILED
+/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:13: Files mountains.txt and mountains-8000.txt differ at line 1 expected:<[McKinley (XXX:XX)
+
+Total time: 0 seconds
+------------- ---------------- ---------------
+
+Testcase: testBothNonExisting took X.XX sec
+	Caused an ERROR
+Expected file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/nnn not found
+com.cyrilqc.core.exception.TaskErrorException: Expected file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/nnn not found
+	at com.cyrilqc.core.task.AssertFileEqualsTask.execute(XXX:XX)
+	at com.cyrilqc.core.CyrilQCProject.run(XXX:XX)
+	at com.cyrilqc.core.CyrilQCTest.run(XXX:XX)
+	at com.cyrilqc.runner.junit4.JUnit4Runner.runChild(XXX:XX)
+	at com.cyrilqc.runner.junit4.JUnit4Runner.runChild(XXX:XX)
+
+Testcase: testDiffer took X.XX sec
+	FAILED
+Files mountains.txt and mountains-8000.txt differ at line 1 expected:<[McKinley (XXX:XX)
+junit.framework.AssertionFailedError: Files mountains.txt and mountains-8000.txt differ at line 1 expected:<[McKinley (XXX:XX)
+	at com.cyrilqc.core.task.AssertFileEqualsTask.compare(XXX:XX)
+	at com.cyrilqc.core.task.AssertFileEqualsTask.execute(XXX:XX)
+	at com.cyrilqc.core.CyrilQCProject.run(XXX:XX)
+	at com.cyrilqc.core.CyrilQCTest.run(XXX:XX)
+	at com.cyrilqc.runner.junit4.JUnit4Runner.runChild(XXX:XX)
+	at com.cyrilqc.runner.junit4.JUnit4Runner.runChild(XXX:XX)
+
+Testcase: testSame took X.XX sec

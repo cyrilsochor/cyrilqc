@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<antlib>
+
+<taskdef name="test" classname="com.cyrilqc.core.task.TestTask" />
+
+<taskdef name="assert" classname="com.cyrilqc.core.task.AssertTask" />
+<taskdef name="assertEquals" classname="com.cyrilqc.core.task.AssertEqualsTask" />
+<taskdef name="assertFileEquals" classname="com.cyrilqc.core.task.AssertFileEqualsTask" />
+
+<!-- 
+  <macrodef name="test">
+    <sequential>
+    	<echo message="JOOO"/>
+    </sequential>
+  </macrodef>
+ -->
+
+</antlib>

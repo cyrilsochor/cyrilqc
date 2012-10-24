@@ -1,0 +1,20 @@
+<project 
+	name="test-integration-many"
+	xmlns="antlib:org.apache.tools.ant"
+	xmlns:c="antlib:it.haefelinger.flaka"
+	xmlns:ac="antlib:net.sf.antcontrib"
+	xmlns:cqc="antlib:com.cyrilqc.core"
+>
+	<target name="testSame">
+		<cqc:assertFileEquals expected="data/mountains.txt" actual="data/mountains.txt"/>
+	</target>
+
+	<target name="testDiffer">
+		<cqc:assertFileEquals expected="data/mountains.txt" actual="data/mountains-8000.txt"/>
+	</target>
+	
+	<target name="testBothNonExisting">
+		<cqc:assertFileEquals expected="data/nnn" actual="data/mmm"/>
+	</target>
+	
+</project>

@@ -1,0 +1,106 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'project-report'
+apply plugin:'application'
+
+group = "com.cyrilqc"
+version = "0.1.0"
+description = "Cyril Quality Center"
+
+applicationName = "cyrilqc" // used by application plugin
+
+sourceCompatibility = 1.5
+
+mainClassName = "com.cyrilqc.runner.CyrilQC"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'junit', name: 'junit', version: '4.+'
+	compile group: 'org.apache.ant', name:'ant', version:'1.8.4'
+	runtime group: 'org.apache.ant', name:'ant-junit', version:'1.8.4'  
+	runtime group: 'org.apache.ant', name:'ant-junit4', version:'1.8.4'
+	runtime group: 'org.apache.ant', name:'ant-jsch', version:'1.8.4'
+	runtime group: 'org.apache.ant', name:'ant-apache-log4j', version:'1.8.4'
+	runtime group: 'org.apache.ant', name:'ant-apache-bsf', version:'1.8.4'
+	runtime group: 'org.apache.ant', name:'ant-apache-bcel', version:'1.8.4'
+	runtime group: 'org.apache.ant', name:'ant-apache-xalan2', version:'1.8.4'
+	runtime group: 'ant-contrib', name:'ant-contrib', version:'1.0b3', transitive: false
+//	testRuntime group:'ant4eclipse', name:'ant4eclipse', version:'0.4.2' //version:'0.5.0.rc1'  
+//	compile group: 'org.slf4j', name:'slf4j-log4j12', version:'1.7.2'
+}
+
+
+task testIntegration ( dependsOn: installApp, desription: "Runs the integration tests." ) << {
+	testResultsDir.mkdirs()
+	def outFile = new File(testResultsDir, "integration-test-out.txt" )
+	def outStream = new FileOutputStream( outFile )
+	exec(){
+		workingDir "src/test-integration/resources"
+		commandLine new File(buildDir, "/install/" + applicationName + "/bin/" + applicationName).absolutePath
+		standardOutput = outStream
+		errorOutput = outStream
+	}
+	logger.info "Integration test output written to " + outFile.absolutePath 
+}
+
+check.dependsOn testIntegration
+
+applicationDistribution.from(javadoc) {
+    into "javadoc"
+}
+
+task dist( dependsOn: distZip) {
+	copy {
+		from libsDir
+    	into distsDir
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.2'
+}
+
+task all (dependsOn: [assemble, check, install, dist]) {
+}
+ 
+/* obsolute
+
+jar {
+	from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+task testBuildSimple << {
+	ant.exec(
+			executable: "ant",
+			failonerror: "true",
+		){
+		arg( value:"-f")
+		arg( value:"src/test/resources/build-simple.xml")
+		arg( value:"-Dbasedir=/data/sochor/workspaces/cyrilqc/cyrilqc-core" )
+	}
+}
+
+
+
+task listJars << {
+	def outFile = new File(buildDir,"cyrilqc-client.xml")
+	outFile.withWriter { out ->
+		out.println "<project>"
+		out.println "	<path id=\"cyrilqc.client.path\">"
+		out.println "		<pathelement path=\"build/libs/cyrilqc-core.jar\"/>"
+	    configurations.compile.each { File file -> out.println "		<pathelement path=\"${file.path}\"/>" }
+		out.println "	</path>"
+		out.println "</project>"
+	}
+	logger.info "Libs written to " + outFile.absolutePath 
+}
+
+assemble.dependsOn listJars,testBuildSimple 
+
+
+*/

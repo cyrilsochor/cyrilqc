@@ -1,0 +1,9 @@
+Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
+Tests run: 0, Failures: 0, Errors: 0, Time elapsed: X.XX sec
+------------- Standard Output ---------------
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                   CyrilQC                                    :
+:  Loading project XXX/cyrilqc-empty.xml
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+------------- ---------------- ---------------
+

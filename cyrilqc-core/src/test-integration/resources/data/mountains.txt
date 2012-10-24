@@ -1,0 +1,121 @@
+McKinley (Denali)	Alaska 	Alaska 	20320	6194
+Aconcagua	Andes	Argentina	22834	6960
+Antofalla	Andes	Argentina	20013	6100
+Cachi	Andes	Argentina	22047	6720
+El Condor	Andes	Argentina	20669	6300
+Galan	Andes	Argentina	21654	6600
+Laudo	Andes	Argentina	20997	6400
+Negro	Andes	Argentina	20184	6152
+Palermo	Andes	Argentina	20079	6120
+Polleras	Andes	Argentina	20456	6235
+Quela	Andes	Argentina	20128	6135
+Solo	Andes	Argentina	20492	6246
+Chañi 	Andes 	Argentina 	20341	6200
+El Libertador 	Andes 	Argentina 	22047	6720
+Famatina	Andes 	Argentina 	20505	6250
+Nacimiento 	Andes 	Argentina 	21302	6493
+Pissis 	Andes 	Argentina 	22241	6779
+Sierra Nevada 	Andes 	Argentina 	20023	6103
+Incahuasi	Andes	Argentina/Chile	21720	6620
+Juncal	Andes	Argentina/Chile	20276	6180
+Marmolejo	Andes	Argentina/Chile	20013	6100
+San Juan	Andes	Argentina/Chile	20049	6111
+Tortolas	Andes	Argentina/Chile	20745	6323
+Tres Cruces	Andes	Argentina/Chile	20853	6356
+Tupungato 	Andes 	Argentina/Chile	22310	6800
+Bonete 	Andes 	Argentina/Chile 	22546	6872
+El Muerto 	Andes 	Argentina/Chile 	21463	6542
+Llullaillaco 	Andes 	Argentina/Chile 	22057	6723
+Mercedario 	Andes 	Argentina/Chile 	22211	6770
+Ojos del Salado 	Andes 	Argentina/Chile 	22664	6908
+Toro 	Andes 	Argentina/Chile 	20932	6380
+Kula Kangri 	Himalayas 	Bhutan 	24783	7554
+Illampu	Andes	Bolivia	21276	6485
+Ancohuma 	Andes 	Bolivia 	20958	6388
+Condoriri 	Andes 	Bolivia 	20095	6125
+Illimani 	Andes 	Bolivia 	21201	6462
+Sajama 	Andes 	Bolivia 	21391	6520
+Parinacota	Andes	Bolivia/Chile	20768	6330
+Aucanquilcha	Andes	Chile	20295	6186
+Pular	Andes	Chile	20423	6225
+Minya Konka (Gongga Shan)	Daxue Shan	China	24900	7590
+Amne Machin	Kunlun	China	23490	7160
+Kungur	Muztagh Ata	China	25325	7719
+Nyainqentanglha	Nyainqentanglha Shan	China	23255	7088
+Muztagh Ata (K-5)	Kunlun 	China 	23890	7282
+Muztagh Ata 	Muztagh Ata 	China 	24757	7546
+Chimborazo 	Andes 	Ecuador 	20702	6310
+Badrinath	Himalayas	India	23420	7138
+Mana	Himalayas	India	23860	7273
+Trisul	Himalayas	India	23360	7120
+Trisuli 	Himalayas	India	23210	7074
+Saser Kangri 	Karakoram 	India	25172	7672
+Dunagiri 	Himalayas 	India 	23184	7066
+Nanda Devi 	Himalayas 	India 	25663	7824
+Pauhunri	Himalayas	India/China	23385	7128
+Kanchenjunga 	Himalayas 	India/Nepal	28169	8586
+Kamet 	Himalayas 	India/Tibet 	25446	7756
+Baltoro Kangri	Himalayas	Kashmir	23990	7312
+Nunkun	Himalayas	Kashmir	23410	7135
+Sia Kangri 	Himalayas 	Kashmir	24350	7422
+Skyang / Kangri 	Himalayas 	Kashmir 	24750	7544
+Masherbrum 	Karakoram 	Kashmir2	25660	7821
+Pobeda Peak	Tien Shan	Kyrgyzstan	24406	7439
+Ama Dablam 	Himalayas	Nepal	22494	6856
+Api	Himalayas	Nepal	23399	7132
+Baruntse	Himalayas	Nepal	23688	7220
+Himalchuli	Himalayas	Nepal	25801	7864
+Kabru	Himalayas	Nepal	24002	7316
+Nepal Peak	Himalayas	Nepal	23500	7163
+Pyramid	Himalayas	Nepal	23400	7132
+Tent Peak	Himalayas	Nepal	24165	7365
+Jongsong Peak	Himalayas 	Nepal	24472	7459
+Annapurna II 	Himalayas	Nepal 	26041	7937
+Annapurna 	Himalayas 	Nepal 	26545	8091
+Chamlang 	Himalayas 	Nepal 	24012	7319
+Dhaulagiri 	Himalayas 	Nepal 	26795	8167
+Gyachung Kang 	Himalayas 	Nepal 	25910	7897
+Makalu II 	Himalayas 	Nepal 	25120	7657
+Manaslu I	Himalayas 	Nepal 	26781	8163
+Nuptse 	Himalayas 	Nepal 	25726	7841
+Cho Oyu	Himalayas	Nepal/Tibet	26906	8201
+Makalu I	Himalayas 	Nepal/Tibet	27766	8463
+Everest1 	Himalayas 	Nepal/Tibet 	29035	8850
+Gauri Sankar 	Himalayas 	Nepal/Tibet 	23440	7145
+Lhotse I	Himalayas 	Nepal/Tibet 	27940	8516
+Nanga Parbat 	Himalayas 	Pakistan	26660	8125
+Istoro Nal	Hindu Kush	Pakistan	24240	7388
+Haramosh Peak	Karakoram	Pakistan	24270	7397
+Disteghil Sar 	Karakoram 	Pakistan	25858	7882
+Kanjut Sar 	Karakoram 	Pakistan	25461	7761
+Rakaposhi 	Karakoram 	Pakistan	25551	7788
+Tirich Mir 	Hindu Kush 	Pakistan 	25230	7690
+Gasherbrum II	Karakoram	Pakistan/China	26360	8035
+Broad Peak 	Karakoram 	Pakistan/China	26400	8047
+Gasherbrum I	Karakoram 	Pakistan/China	26470	8068
+K2 (Godwin Austen) 	Karakoram 	Pakistan/China 	28250	8611
+Ampato	Andes	Peru	20702	6310
+Coropuna	Andes	Peru	21083	6426
+Huancarhuas	Andes	Peru	20531	6258
+Huandoy	Andes	Peru	20852	6356
+Pumasillo	Andes	Peru	20492	6246
+Yerupaja	Andes	Peru	21709	6617
+Cuzco 	Andes 	Peru 	20945	6384
+Huascarán 	Andes 	Peru 	22205	6768
+Salcantay 	Andes 	Peru 	20574	6271
+Solimana 	Andes 	Peru 	20068	6117
+Ismail Samani Peak (formerly Communism Peak) 	Pamirs	Tajikistan 	24590	7495
+Korzhenevski Peak 	Pamirs	Tajikistan 	23310	7105
+Kurumda 	Pamirs	Tajikistan 	21686	6610
+Revolution Peak 	Pamirs	Tajikistan 	22880	6974
+Moscow Peak 	Pamirs 	Tajikistan 	22260	6785
+Lenin Peak 	Pamirs	Tajikistan/Kyrgyzstan 	23405	7134
+Alung Gangri 	Himalayas 	Tibet 	24000	7315
+Chang-tzu 	Himalayas 	Tibet 	24780	7553
+Gurla Mandhata 	Himalayas 	Tibet 	25355	7728
+Kailas 	Himalayas 	Tibet 	22027	6714
+Kangto 	Himalayas 	Tibet 	23260	7090
+Namcha Barwa 	Himalayas 	Tibet 	25445	7756
+Shishma Pangma (Gosainthan) 	Himalayas 	Tibet 	26289	8013
+Ulugh Muztagh 	Kunlun 	Tibet 	25340	7723
+Chomo Lhari 	Himalayas 	Tibet/Bhutan 	24040	7327

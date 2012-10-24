@@ -1,0 +1,128 @@
+Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
+Tests run: 6, Failures: 1, Errors: 1, Time elapsed: X.XX sec
+------------- Standard Output ---------------
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                   CyrilQC                                    :
+:  Loading project XXX/cyrilqc-many.xml
+:  Project name test-integration-many                                          :
+:  Found test-main                                                             :
+:  Found test-test                                                             :
+:  Found test-test-integration                                                 :
+:  Found test-first                                                            :
+:  Found test-last                                                             :
+:  Found test-second                                                           :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                  test-main                                   :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+     [echo] TEST test-main
+     [echo] Test test-main finished
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                  test-test                                   :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+     [echo] TEST test-test
+     [echo] Test test-test finished
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                            test-test-integration                             :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+     [echo] TEST test-test-integration
+     [echo] Test test-test-integration finished
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                  test-first                                  :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-first:
+     [echo] First Test
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                  test-last                                   :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-last:
+     [echo] Last test
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                 test-second                                  :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-second:
+     [echo] Second test
+
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+
+BUILD FAILED
+/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-many.xml:23: THIS_ERROR_IS_EXPECTED
+
+Total time: 0 seconds
+
+BUILD FAILED
+/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-many.xml:18: org.junit.ComparisonFailure: THIS_FAILURE_IS_EXPECTED expected:<[1]> but was:<[2]>
+	at org.junit.Assert.assertEquals(XXX:XX)
+	at com.cyrilqc.core.task.AssertEqualsTask.execute(XXX:XX)
+	at org.apache.tools.ant.UnknownElement.execute(XXX:XX)
+	at sun.reflect.GeneratedMethodAccessor4.invoke(XXX:XX)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(XXX:XX)
+	at java.lang.reflect.Method.invoke(XXX:XX)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(XXX:XX)
+	at org.apache.tools.ant.Task.perform(XXX:XX)
+	at org.apache.tools.ant.Target.execute(XXX:XX)
+	at org.apache.tools.ant.Target.performTasks(XXX:XX)
+	at org.apache.tools.ant.Project.executeSortedTargets(XXX:XX)
+	at org.apache.tools.ant.Project.executeTarget(XXX:XX)
+	at com.cyrilqc.core.CyrilQCProject.run(XXX:XX)
+	at com.cyrilqc.core.CyrilQCTest.run(XXX:XX)
+	at com.cyrilqc.runner.junit4.JUnit4Runner.runChild(XXX:XX)
+	at com.cyrilqc.runner.junit4.JUnit4Runner.runChild(XXX:XX)
+	at org.junit.runners.ParentRunner$3.run(XXX:XX)
+	at org.junit.runners.ParentRunner$1.schedule(XXX:XX)
+	at org.junit.runners.ParentRunner.runChildren(XXX:XX)
+	at org.junit.runners.ParentRunner.access$000(XXX:XX)
+	at org.junit.runners.ParentRunner$2.evaluate(XXX:XX)
+	at org.junit.runners.ParentRunner.run(XXX:XX)
+	at junit.framework.JUnit4TestAdapter.run(XXX:XX)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(XXX:XX)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(XXX:XX)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(XXX:XX)
+
+Total time: 0 seconds
+------------- ---------------- ---------------
+
+Testcase: test-main took X.XX sec
+Testcase: test-test took X.XX sec
+Testcase: test-test-integration took X.XX sec
+Testcase: test-first took X.XX sec
+Testcase: test-last took X.XX sec
+	Caused an ERROR
+THIS_ERROR_IS_EXPECTED
+/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-many.xml:23: THIS_ERROR_IS_EXPECTED
+	at com.cyrilqc.core.CyrilQCProject.run(XXX:XX)
+	at com.cyrilqc.core.CyrilQCTest.run(XXX:XX)
+	at com.cyrilqc.runner.junit4.JUnit4Runner.runChild(XXX:XX)
+	at com.cyrilqc.runner.junit4.JUnit4Runner.runChild(XXX:XX)
+
+Testcase: test-second took X.XX sec
+	FAILED
+THIS_FAILURE_IS_EXPECTED expected:<[1]> but was:<[2]>
+junit.framework.AssertionFailedError: THIS_FAILURE_IS_EXPECTED expected:<[1]> but was:<[2]>
+	at com.cyrilqc.core.task.AssertEqualsTask.execute(XXX:XX)
+	at com.cyrilqc.core.CyrilQCProject.run(XXX:XX)
+	at com.cyrilqc.core.CyrilQCTest.run(XXX:XX)
+	at com.cyrilqc.runner.junit4.JUnit4Runner.runChild(XXX:XX)
+	at com.cyrilqc.runner.junit4.JUnit4Runner.runChild(XXX:XX)
+

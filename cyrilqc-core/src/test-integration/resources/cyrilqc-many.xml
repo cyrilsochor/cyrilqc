@@ -1,0 +1,72 @@
+<project 
+	name="test-integration-many"
+	xmlns="antlib:org.apache.tools.ant"
+	xmlns:c="antlib:it.haefelinger.flaka"
+	xmlns:ac="antlib:net.sf.antcontrib"
+	xmlns:cqc="antlib:com.cyrilqc.core"
+>
+	<target name="todle-neni-test">
+	</target>
+	
+	<target name="test-first" description="First empty test">
+		<echo message="First Test"/>
+		<cqc:assertEquals expected="1" actual="1" message="aaaa"/>
+	</target>
+
+	<target name="test-second" description="First empty test">
+		<echo message="Second test"></echo>
+		<cqc:assertEquals expected="1" actual="2"  message="THIS_FAILURE_IS_EXPECTED"/>
+	</target>
+
+	<target name="test-last" description="First empty test">
+		<echo message="Last test"></echo>
+		<fail message="THIS_ERROR_IS_EXPECTED"/>
+	</target>
+	
+	<target name="multitest" description="First empty test">
+		<ac:foreach target="loader-test" param="testDir" inheritrefs="true">
+			<path>
+				<dirset dir="../.." includes="*"/>
+			</path>
+		</ac:foreach>
+	</target>
+	
+	<target name="loader-test">
+	  	<basename property="fileBaseName" file="${testDir}"/>
+		<property name="testName" value="test-${fileBaseName}"/>
+		
+		<cqc:test name="${testName}">
+			<echo level="warning">TEST ${testName}</echo>
+			<echo level="warning">Test ${testName} finished</echo>
+		</cqc:test>
+	</target>
+	
+<!-- 
+
+	<test name="external-ant">
+		<task module="ant" name="externalAnt">
+			<parameter name="file" value="build-external.xml"/>
+		</task>
+		<task module="basic" name="textFileCompare">
+			<parameter name="expected" value="build-external.xml"/>
+			<parameter name="actual" value="../../../build/test-output/external-build/build-external.xml.backup"/>
+		</task>
+	</test>
+
+	
+	
+	<test name="mountains-same-file">
+		<task module="basic" name="textFileCompare">
+			<parameter name="expected" value="mountains.txt"/>
+			<parameter name="actual" value="mountains.txt"/>
+		</task>
+	</test>
+
+	<test name="mountains-8000">
+		<task module="basic" name="textFileCompare">
+			<parameter name="expected" value="mountains.txt"/>
+			<parameter name="actual" value="mountains-8000.txt"/>
+		</task>
+	</test>
+ -->
+</project>

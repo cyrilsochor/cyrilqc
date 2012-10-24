@@ -1,0 +1,31 @@
+- display column of difference by assertFileEquals
+- execute targets beforeModule and afterModule
+- each test must be excuted with clean project - no property set and no target executed
+- execute only specified test - command line argument and system propery for junit
+- configure another configuration class implementation
+- load configuration from property file and java system properties
+- code completion in eclipse ant editor
+- all junit Assert functions must be implemented
+- all antunit tasks must be implemented
+- cloverETL task - only execute one graph
+- cloverETL component collecting comparrison results
+- integrate dbunit
+- integrate xmlunit
+- implement test attributes durationLimit="3600000" durationHistoryLimit="150%"
+- generate cyrilqc audit log - xml:
+	- test result (succes/failure/error) for each test
+	- duration of each task
+	- startTime, endTime
+- gradle cyrilqc plugin
+- maven cyrilqc plugin
+- manual
+- site www.cyrilqc.com
+- web GUI
+	- editor
+	- history browser, duration graphs
+	- gooddata integration - better history statistics
+- eclipse integration
+- load multiple configuration files - one toplevel element in eclipse junit view (low priority, workaround by ant import)
+- CyrilQC Cloud 
+	- free edition
+	- commercial edition 

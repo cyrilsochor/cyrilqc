@@ -1,0 +1,14 @@
+Kanchenjunga 	Himalayas 	India/Nepal	28169	8586
+Annapurna 	Himalayas 	Nepal 	26545	8091
+Dhaulagiri 	Himalayas 	Nepal 	26795	8167
+Manaslu I	Himalayas 	Nepal 	26781	8163
+Cho Oyu	Himalayas	Nepal/Tibet	26906	8201
+Makalu I	Himalayas 	Nepal/Tibet	27766	8463
+Everest1 	Himalayas 	Nepal/Tibet 	29035	8850
+Lhotse I	Himalayas 	Nepal/Tibet 	27940	8516
+Nanga Parbat 	Himalayas 	Pakistan	26660	8125
+Broad Peak 	Karakoram 	Pakistan/China	26400	8047
+Gasherbrum I	Karakoram 	Pakistan/China	26470	8068
+K2 (Godwin Austen) 	Karakoram 	Pakistan/China 	28250	8611
+Shishma Pangma (Gosainthan) 	Himalayas 	Tibet 	26289	8013
+
