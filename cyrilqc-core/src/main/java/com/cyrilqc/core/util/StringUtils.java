@@ -42,4 +42,8 @@ public class StringUtils {
 		}
 		return ret.toString();
 	}
+
+	public static boolean isNotEmpty(String s) {
+		return s != null && s.length() > 0;
+	}
 }

@@ -1,0 +1,79 @@
+<project
+	name="test-integration-before-after"
+	xmlns="antlib:org.apache.tools.ant"
+	xmlns:cqc="antlib:com.cyrilqc.core"
+>
+	<property name="action" value="lives"/>
+
+	<target name="before-scan">
+		<echo>BEFORE SCAN</echo>
+	</target>
+	
+	<target name="after-scan">
+		<echo>BEFORE SCAN</echo>
+	</target>
+	
+	<target name="before-module-1">
+		<echo>BEFORE MODULE 1</echo>
+	</target>
+	
+	<target name="before-module-2">
+		<echo>BEFORE MODULE 2</echo>
+		<property name="animal" value="Dog"/>
+	</target>
+	
+	<target name="before-test">
+		<echo>BEFORE TEST</echo>
+		<property name="animal" value="Crocodile"/>
+	</target>
+	
+	<target name="test-1-no-river">
+		<echo>THIS IS TEST 1-no-river</echo>
+		<echo>${animal} ${action} in ${river}</echo>
+	</target>
+	
+	<target name="test-2-river-nile">
+		<echo>THIS IS TEST 2-river-nile</echo>
+		<property name="river" value="Nile"/>
+		<echo>${animal} ${action} in ${river}</echo>
+	</target>
+	
+	<target name="test-3-try-set-properties">
+		<echo>THIS IS TEST 3-try-set-properties</echo>
+		<property name="animal" value="Elefant"/>
+		<property name="action" value="fly"/>
+		<property name="river" value="jungle"/>
+		<echo>${animal} ${action} in ${river}</echo>
+	</target>
+	
+	<target name="multitest">
+		<cqc:test name="test-m1-no-river">
+			<echo>THIS IS TEST m1-no-river</echo>
+			<echo>${animal} ${action} in ${river}</echo>
+		</cqc:test>
+		<cqc:test name="test-m2-river-nile">
+			<echo>THIS IS TEST m2-river-nile</echo>
+			<echo>${animal} ${action} in ${river}</echo>
+		</cqc:test>
+		<cqc:test name="test-m3-try-set-properties">
+			<echo>THIS IS TEST m3-try-set-properties</echo>
+			<property name="animal" value="Penguin"/>
+			<property name="action" value="walk"/>
+			<property name="river" value="Colorado"/>
+			<echo>${animal} ${action} in ${river}</echo>
+		</cqc:test>
+	</target>
+	
+	<target name="after-test-2">
+		<echo>AFTER TEST 2</echo>
+	</target>
+	
+	<target name="after-test-1">
+		<echo>AFTER TEST 1</echo>
+	</target>
+
+	<target name="after-module">
+		<echo>AFTER MODULE</echo>
+	</target>
+	
+</project>

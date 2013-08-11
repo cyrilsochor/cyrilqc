@@ -8,12 +8,13 @@ import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.TaskContainer;
 
-import com.cyrilqc.core.RuntimeHelper;
+import com.cyrilqc.core.CyrilQCProject;
+import com.cyrilqc.core.CyrilQCRuntimeHelper;
 
 public class TestTask extends Task implements TaskContainer {
 
 	private String name;
-	private List<Task> tasks = new LinkedList<Task>();
+	private final List<Task> tasks = new LinkedList<Task>();
 
 	public String getName() {
 		return name;
@@ -29,7 +30,7 @@ public class TestTask extends Task implements TaskContainer {
 
 	@Override
 	public void execute() throws BuildException {
-		final RuntimeHelper runtimeHelper = getRuntimeHelper();
+		final CyrilQCRuntimeHelper runtimeHelper = getRuntimeHelper();
 		if (runtimeHelper == null) {
 			log("cyrilqc runtime helper not found, executing childs task", null, Project.MSG_WARN);
 			executeChildTasks();
@@ -50,16 +51,16 @@ public class TestTask extends Task implements TaskContainer {
 		}
 	}
 
-	public RuntimeHelper getRuntimeHelper() {
-		return (RuntimeHelper) getProject().getReference("cyrilqc.runtimeHelper");
+	public CyrilQCRuntimeHelper getRuntimeHelper() {
+		return CyrilQCProject.getRuntimeHelper(getProject());
 	}
 
 	private void executeChildTasks() {
-		RuntimeHelper runtimeHelper = getRuntimeHelper();
+		final CyrilQCRuntimeHelper runtimeHelper = getRuntimeHelper();
 		if (runtimeHelper != null) {
 			runtimeHelper.fireBeforeTest();
 		}
-		for (Task task : tasks) {
+		for (final Task task : tasks) {
 			task.perform();
 		}
 		if (runtimeHelper != null) {

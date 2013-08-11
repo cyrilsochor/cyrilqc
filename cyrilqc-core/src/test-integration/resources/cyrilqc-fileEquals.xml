@@ -5,16 +5,49 @@
 	xmlns:ac="antlib:net.sf.antcontrib"
 	xmlns:cqc="antlib:com.cyrilqc.core"
 >
+	<taskdef uri="antlib:com.cyrilqc.core"/>
+	
 	<target name="testSame">
-		<cqc:assertFileEquals expected="data/mountains.txt" actual="data/mountains.txt"/>
+		<cqc:assertfileequals expected="data/mountains.txt" actual="data/mountains.txt"/>
 	</target>
 
 	<target name="testDiffer">
-		<cqc:assertFileEquals expected="data/mountains.txt" actual="data/mountains-8000.txt"/>
+		<cqc:assertfileequals expected="data/mountains.txt" actual="data/mountains-8000.txt"/>
+	</target>
+	
+	<target name="testExpectedNonExisting">
+		<cqc:assertfileequals expected="data/nnn" actual="data/mountains.txt"/>
+	</target>
+	
+	<target name="testActualNonExisting">
+		<cqc:assertfileequals expected="data/mountains.txt" actual="data/mmm"/>
 	</target>
 	
 	<target name="testBothNonExisting">
-		<cqc:assertFileEquals expected="data/nnn" actual="data/mmm"/>
+		<cqc:assertfileequals expected="data/nnn" actual="data/mmm"/>
 	</target>
+
+	<!--
+	<target name="testSameS">
+		<cqc:assertequals>
+			<cqc:expectedfile path="data/mountains.txt"/>
+			<cqc:actualfile path="data/mountains.txt"/>
+		</cqc:assertequals>
+	</target>
+
+	<target name="testBothNonExistingS">
+		<cqc:assertequals>
+			<cqc:expectedfile path="data/nnn"/>
+			<cqc:actualfile path="data/mmm"/>
+		</cqc:assertequals>
+	</target>
+
+	<target name="testCSV">
+		<cqc:assertequals>
+			<cqc:expectedcsvfile path="data/short-1.csv"/>
+			<cqc:actualcsvfile path="data/short-1.csv"/>
+		</cqc:assertequals>
+	</target>
+	-->
 	
 </project>

@@ -12,7 +12,7 @@ public class CyrilQC {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ArrayList<String> junitArgs = new ArrayList<String>();
+		final ArrayList<String> junitArgs = new ArrayList<String>();
 		junitArgs.add(CyrilQCJUnit4Test.class.getName());
 		JUnitCore.main(junitArgs.toArray(new String[junitArgs.size()]));
 	}

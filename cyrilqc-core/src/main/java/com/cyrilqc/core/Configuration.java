@@ -1,10 +1,8 @@
 package com.cyrilqc.core;
 
-import java.net.URL;
-
 public interface Configuration {
 
-	URL getProjectURL();
+	String getProjectFile();
 
 	String getTestTargetPrefix();
 
@@ -23,5 +21,13 @@ public interface Configuration {
 	char getLogoCharacter();
 
 	int getLogoLength();
+
+	String getBeforeModuleTargetPrefix();
+
+	String getAfterModuleTargetPrefix();
+
+	String getBeforeTestTargetPrefix();
+
+	String getAfterTestTargetPrefix();
 
 }

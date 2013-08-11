@@ -45,14 +45,17 @@
 			<copy file="${test.results.dir}/TEST-${project}.txt" tofile="${test.normalized.dir}/TEST-${project}.txt">
 				<filterchain>
 					<tokenfilter>
-			    		<replaceregex pattern="Time elapsed: (.*) sec" replace="Time elapsed: X.XX sec" flags="g"/>
+						<replaceregex pattern="Time elapsed: (.*) sec" replace="Time elapsed: X.XX sec" flags="g"/>
 			    		<replaceregex pattern="took (.*) sec" replace="took X.XX sec" flags="g"/>
 			    		<replaceregex pattern="Loading project (.*)/" replace="Loading project XXX/" flags="g"/>
-			    		<replaceregex pattern="at (.*)\(.*\).*" replace="at \1(XXX:XX)" flags="g"/>
+			    		<replaceregex pattern="^Total time: (.*)" replace="Total time: X seconds" flags="g"/>
 					</tokenfilter>
+					<linecontainsregexp negate="true">
+					  <regexp pattern="\w*at (.*)\(.*\).*"/>
+					</linecontainsregexp>
 				</filterchain>
 			</copy>
-			<cqc:assertFileEquals expected="TEST-${project}.txt" actual="${test.normalized.dir}/TEST-${project}.txt"/>
+			<cqc:assertfileequals expected="TEST-${project}.txt" actual="${test.normalized.dir}/TEST-${project}.txt"/>
 		</cqc:test>
 	</target>
 </project>

@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
 apply plugin: 'project-report'
-apply plugin:'application'
+apply plugin: 'application'
 
 group = "com.cyrilqc"
 version = "0.1.0"
@@ -21,14 +21,14 @@ repositories {
 
 dependencies {
     compile group: 'junit', name: 'junit', version: '4.+'
-	compile group: 'org.apache.ant', name:'ant', version:'1.8.4'
-	runtime group: 'org.apache.ant', name:'ant-junit', version:'1.8.4'  
-	runtime group: 'org.apache.ant', name:'ant-junit4', version:'1.8.4'
-	runtime group: 'org.apache.ant', name:'ant-jsch', version:'1.8.4'
-	runtime group: 'org.apache.ant', name:'ant-apache-log4j', version:'1.8.4'
-	runtime group: 'org.apache.ant', name:'ant-apache-bsf', version:'1.8.4'
-	runtime group: 'org.apache.ant', name:'ant-apache-bcel', version:'1.8.4'
-	runtime group: 'org.apache.ant', name:'ant-apache-xalan2', version:'1.8.4'
+	compile group: 'org.apache.ant', name:'ant', version:'1.9.2'
+	runtime group: 'org.apache.ant', name:'ant-junit', version:'1.9.2'  
+	runtime group: 'org.apache.ant', name:'ant-junit4', version:'1.9.2'
+	runtime group: 'org.apache.ant', name:'ant-jsch', version:'1.9.2'
+	runtime group: 'org.apache.ant', name:'ant-apache-log4j', version:'1.9.2'
+	runtime group: 'org.apache.ant', name:'ant-apache-bsf', version:'1.9.2'
+	runtime group: 'org.apache.ant', name:'ant-apache-bcel', version:'1.9.2'
+	runtime group: 'org.apache.ant', name:'ant-apache-xalan2', version:'1.9.2'
 	runtime group: 'ant-contrib', name:'ant-contrib', version:'1.0b3', transitive: false
 //	testRuntime group:'ant4eclipse', name:'ant4eclipse', version:'0.4.2' //version:'0.5.0.rc1'  
 //	compile group: 'org.slf4j', name:'slf4j-log4j12', version:'1.7.2'

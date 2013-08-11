@@ -1,70 +1,89 @@
 Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
-Tests run: 3, Failures: 1, Errors: 1, Time elapsed: X.XX sec
+Tests run: 5, Failures: 3, Errors: 0, Time elapsed: X.XX sec
 ------------- Standard Output ---------------
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :                                   CyrilQC                                    :
 :  Loading project XXX/cyrilqc-fileEquals.xml
 :  Project name test-integration-many                                          :
+:  Found testActualNonExisting                                                 :
 :  Found testBothNonExisting                                                   :
 :  Found testDiffer                                                            :
+:  Found testExpectedNonExisting                                               :
 :  Found testSame                                                              :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                            testActualNonExisting                             :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+testActualNonExisting:
+[cqc:assertfileequals] Comparing files, expected data/mountains.txt and actual data/mmm
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :                             testBothNonExisting                              :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 testBothNonExisting:
+[cqc:assertfileequals] Comparing files, expected data/nnn and actual data/mmm
+
+BUILD SUCCESSFUL
+Total time: X seconds
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :                                  testDiffer                                  :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 testDiffer:
-[cqc:assertFileEquals] Comparing text files data/mountains.txt and data/mountains-8000.txt
+[cqc:assertfileequals] Comparing files, expected data/mountains.txt and actual data/mountains-8000.txt
+[cqc:assertfileequals] Autodetected content type 'application/octet-stream' of file data/mountains.txt
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                           testExpectedNonExisting                            :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+testExpectedNonExisting:
+[cqc:assertfileequals] Comparing files, expected data/nnn and actual data/mountains.txt
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :                                   testSame                                   :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 testSame:
-[cqc:assertFileEquals] Comparing text files data/mountains.txt and data/mountains.txt
+[cqc:assertfileequals] Comparing files, expected data/mountains.txt and actual data/mountains.txt
+[cqc:assertfileequals] Autodetected content type 'application/octet-stream' of file data/mountains.txt
 
 BUILD SUCCESSFUL
-Total time: 0 seconds
-
+Total time: X seconds
 ------------- ---------------- ---------------
 ------------- Standard Error -----------------
 
 BUILD FAILED
-/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:17: Expected file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/nnn not found
+/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:23: Actual file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/mmm not found
 
-Total time: 0 seconds
+Total time: X seconds
 
 BUILD FAILED
-/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:13: Files mountains.txt and mountains-8000.txt differ at line 1 expected:<[McKinley (XXX:XX)
 
-Total time: 0 seconds
+Total time: X seconds
+
+BUILD FAILED
+/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:19: Expected file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/nnn not found
+
+Total time: X seconds
 ------------- ---------------- ---------------
 
-Testcase: testBothNonExisting took X.XX sec
-	Caused an ERROR
-Expected file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/nnn not found
-com.cyrilqc.core.exception.TaskErrorException: Expected file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/nnn not found
-	at com.cyrilqc.core.task.AssertFileEqualsTask.execute(XXX:XX)
-	at com.cyrilqc.core.CyrilQCProject.run(XXX:XX)
-	at com.cyrilqc.core.CyrilQCTest.run(XXX:XX)
-	at com.cyrilqc.runner.junit4.JUnit4Runner.runChild(XXX:XX)
-	at com.cyrilqc.runner.junit4.JUnit4Runner.runChild(XXX:XX)
+Testcase: testActualNonExisting took X.XX sec
+	FAILED
+/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:23: Actual file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/mmm not found
+junit.framework.AssertionFailedError: /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:23: Actual file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/mmm not found
 
+Testcase: testBothNonExisting took X.XX sec
 Testcase: testDiffer took X.XX sec
 	FAILED
-Files mountains.txt and mountains-8000.txt differ at line 1 expected:<[McKinley (XXX:XX)
-junit.framework.AssertionFailedError: Files mountains.txt and mountains-8000.txt differ at line 1 expected:<[McKinley (XXX:XX)
-	at com.cyrilqc.core.task.AssertFileEqualsTask.compare(XXX:XX)
-	at com.cyrilqc.core.task.AssertFileEqualsTask.execute(XXX:XX)
-	at com.cyrilqc.core.CyrilQCProject.run(XXX:XX)
-	at com.cyrilqc.core.CyrilQCTest.run(XXX:XX)
-	at com.cyrilqc.runner.junit4.JUnit4Runner.runChild(XXX:XX)
-	at com.cyrilqc.runner.junit4.JUnit4Runner.runChild(XXX:XX)
+
+Testcase: testExpectedNonExisting took X.XX sec
+	FAILED
+/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:19: Expected file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/nnn not found
+junit.framework.AssertionFailedError: /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:19: Expected file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/nnn not found
 
 Testcase: testSame took X.XX sec

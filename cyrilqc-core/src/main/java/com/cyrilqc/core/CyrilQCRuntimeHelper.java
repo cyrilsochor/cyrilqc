@@ -1,13 +1,13 @@
 package com.cyrilqc.core;
 
-public class RuntimeHelper {
+public class CyrilQCRuntimeHelper {
 
 	private final CyrilQCProject project;
 	private RuntimeMode mode;
 	private String targetName;
 	private String testName;
 
-	public RuntimeHelper(CyrilQCProject project) {
+	public CyrilQCRuntimeHelper(CyrilQCProject project) {
 		super();
 		this.project = project;
 	}

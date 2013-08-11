@@ -12,6 +12,6 @@
 <stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.cyrilqc.runner.junit4.CyrilQCJUnit4Test"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="cyrilqc-core"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dcyrilqc.project.file=cyrilqc-many.xml"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dcyrilqc.project.file=cyrilqc-before-after.xml"/>
 <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:cyrilqc-core/src/test-integration/resources}"/>
 </launchConfiguration>

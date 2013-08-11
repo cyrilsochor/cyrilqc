@@ -1,17 +1,15 @@
 package com.cyrilqc.core.task;
 
-import org.apache.tools.ant.BuildException;
-import org.apache.tools.ant.Task;
 import org.junit.Assert;
 
-public class AssertEqualsTask extends Task {
+public class AssertEqualsTask extends AssertionTask {
 
 	String message;
 	String expected;
 	String actual;
 
 	@Override
-	public void execute() throws BuildException {
+	public void executeAssertion() {
 		Assert.assertEquals(message, expected, actual);
 	}
 

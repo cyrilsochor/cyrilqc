@@ -2,9 +2,8 @@ package com.cyrilqc.core.task;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.taskdefs.condition.Condition;
-import org.apache.tools.ant.taskdefs.condition.ConditionBase;
 
-public class AssertTask extends ConditionBase {
+public class AssertTask extends AssertionConditionBase {
 
 	private String message = "Assertion failed";
 
@@ -16,8 +15,9 @@ public class AssertTask extends ConditionBase {
 		this.message = message;
 	}
 
-	public void execute() throws BuildException {
-		int count = countConditions();
+	@Override
+	public void executeAssertion() {
+		final int count = countConditions();
 		if (count > 1) {
 			throw new BuildException("At least one condition required", getLocation());
 		}

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -17,131 +18,207 @@ import com.cyrilqc.core.util.StringUtils;
 
 public class CyrilQCProject {
 
+	private static final String RUNTIME_HELPER_KEY = "cyrilqc.runtimeHelper";
+
 	private final CyrilQCEngine engine;
 	private final URL projectURL;
-	private Project antProject;
-	private List<CyrilQCTest> tests;
-	private RuntimeHelper runtimeHelper;
 
+	private Project defaultAntProject;
+
+	private List<CyrilQCTest> tests;
+	private List<String> beforeModuleTargets;
+	private List<String> afterModuleTargets;
+	private List<String> beforeTestTargets;
+	private List<String> afterTestTargets;
+
+	private File projectFile;
 	private DefaultLogger consoleLogger;
 	private ProjectHelper antHelper;
-	private BlockingDeque<Integer> messageOutputLevels = new LinkedBlockingDeque<Integer>();
+	private final BlockingDeque<Integer> messageOutputLevels = new LinkedBlockingDeque<Integer>();
 
 	public CyrilQCProject(CyrilQCEngine engine, URL projectURL) throws Exception {
 		this.engine = engine;
 		this.projectURL = projectURL;
-		loadProject();
+	}
+
+	public void init() throws Exception {
+		// TODO solve universal URL
+		projectFile = new File(projectURL.getFile());
+
+		consoleLogger = new DefaultLogger();
+		consoleLogger.setErrorPrintStream(System.err);
+		consoleLogger.setOutputPrintStream(System.out);
+
+		antHelper = ProjectHelper.getProjectHelper();
+
+		this.defaultAntProject = prepareAntProject();
+
+		logLogoStartEnd();
+		logLogoLine("CyrilQC", true);
+		logLogoLine("Loading project " + projectFile.getAbsolutePath());
+
+		parseProject(defaultAntProject);
+		if (defaultAntProject.getName() != null) {
+			logLogoLine("Project name " + defaultAntProject.getName());
+		}
+
+		scanProject();
+		for (final CyrilQCTest test : tests) {
+			logLogoLine("Found " + test.getName());
+		}
+
+		logLogoStartEnd();
 	}
 
 	public String getName() {
-		final String antName = antProject.getName();
+		String name;
+		final String antName = defaultAntProject.getName();
 		if (antName == null) {
-			return engine.getConfiguration().getProjectNamePrefix();
+			name = engine.getConfiguration().getProjectNamePrefix();
 		} else {
-			return engine.getConfiguration().getProjectNamePrefix() + ":" + antName;
+			name = engine.getConfiguration().getProjectNamePrefix() + antName;
 		}
+		return name;
 	}
 
 	public List<CyrilQCTest> getTests() {
 		return tests;
 	}
 
-	private void loadProject() throws Exception {
-		antProject = new org.apache.tools.ant.Project();
-		runtimeHelper = new RuntimeHelper(this);
-		consoleLogger = new DefaultLogger();
-		antHelper = ProjectHelper.getProjectHelper();
+	private org.apache.tools.ant.Project getAntCleanProject() throws Exception {
+		final Project antProject = prepareAntProject();
+		parseProject(antProject);
+		return antProject;
+	}
 
-		consoleLogger.setErrorPrintStream(System.err);
-		consoleLogger.setOutputPrintStream(System.out);
+	protected Project prepareAntProject() {
+		final Project antProject = new org.apache.tools.ant.Project();
+		final CyrilQCRuntimeHelper cyrilQCRuntimeHelper = new CyrilQCRuntimeHelper(this);
+
 		setMessageOutputLevel(engine.getConfiguration().getLoggingLevelDefault());
 		antProject.addBuildListener(consoleLogger);
 
-		logLogoStartEnd();
-		// TODO solve universal URL
-		final File projectFile = new File(projectURL.getFile());
-		logLogoLine("CyrilQC", true);
-		logLogoLine("Loading project " + projectFile.getAbsolutePath());
 		antProject.setUserProperty("ant.file", projectFile.getAbsolutePath());
 		antProject.setProperty("name", "CyrilQC");
-		// antProject.fireBuildStarted();
 		antProject.init();
 		antProject.addReference("ant.projectHelper", antHelper);
-		antProject.addReference("cyrilqc.runtimeHelper", runtimeHelper);
-		antHelper.parse(antProject, projectFile);
-		if (antProject.getName() != null) {
-			logLogoLine("Project name " + antProject.getName());
-		}
-
-		cookProjectTests();
-		// project.executeTarget(project.getDefaultTarget());
-		// project.fireBuildFinished(null);
-
-		for (CyrilQCTest test : tests) {
-			logLogoLine("Found " + test.getName());
-		}
-		logLogoStartEnd();
+		antProject.addReference(RUNTIME_HELPER_KEY, cyrilQCRuntimeHelper);
+		return antProject;
 	}
 
-	@SuppressWarnings("unchecked")
+	protected void parseProject(final Project antProject) {
+		antHelper.parse(antProject, projectFile);
+	}
+
 	private List<String> getSortedTargets() {
-		List<String> ret = new LinkedList<String>();
-		ret.addAll(antProject.getTargets().keySet());
+		final List<String> ret = new LinkedList<String>();
+		ret.addAll(defaultAntProject.getTargets().keySet());
 		Collections.sort(ret);
 		return ret;
 	}
 
-	private void cookProjectTests() {
+	private void scanProject() throws Exception {
+		final Project antProject = getAntCleanProject();
+
 		tests = new LinkedList<CyrilQCTest>();
+		beforeModuleTargets = new LinkedList<String>();
+		afterModuleTargets = new LinkedList<String>();
+		beforeTestTargets = new LinkedList<String>();
+		afterTestTargets = new LinkedList<String>();
+
+		final List<String> multiTestTargets = new LinkedList<String>();
+
+		// scan all targets and add target names to proper collection
 		for (final String targetName : getSortedTargets()) {
 			if (targetName.startsWith(engine.getConfiguration().getTestTargetPrefix())) {
 				addTest(targetName, false, targetName);
 			} else if (targetName.startsWith(engine.getConfiguration().getMultiTestTargetPrefix())) {
-				runtimeHelper.setMode(RuntimeMode.LOOKUP_TESTS);
-				runtimeHelper.setTargetName(targetName);
-				setMessageOutputLevel(engine.getConfiguration().getLoggingLevelInfrastructure());
-				antProject.executeTarget(targetName);
-				restoreMessageOutputLevel();
+				multiTestTargets.add(targetName);
+			} else if (targetName.startsWith(engine.getConfiguration().getBeforeModuleTargetPrefix())) {
+				beforeModuleTargets.add(targetName);
+			} else if (targetName.startsWith(engine.getConfiguration().getAfterModuleTargetPrefix())) {
+				afterModuleTargets.add(targetName);
+			} else if (targetName.startsWith(engine.getConfiguration().getBeforeTestTargetPrefix())) {
+				beforeTestTargets.add(targetName);
+			} else if (targetName.startsWith(engine.getConfiguration().getAfterTestTargetPrefix())) {
+				afterTestTargets.add(targetName);
 			}
-
 		}
+
+		// add multitests
+		for (final String targetName : multiTestTargets) {
+			scanTargetForMultiTest(antProject, targetName);
+		}
+
+		Collections.sort(tests, new CyrilQCTestNameComparator());
 	}
 
-	public void addTest(final String targetName, final boolean multi, final String name) {
+	protected void scanTargetForMultiTest(final Project antProject, final String targetName) {
+		final CyrilQCRuntimeHelper runtimeHelper = getRuntimeHelper(antProject);
+		runtimeHelper.setMode(RuntimeMode.LOOKUP_TESTS);
+		runtimeHelper.setTargetName(targetName);
+		setMessageOutputLevel(engine.getConfiguration().getLoggingLevelInfrastructure());
+		antProject.executeTarget(targetName);
+		restoreMessageOutputLevel();
+	}
+
+	void addTest(final String targetName, final boolean multi, final String name) {
 		final CyrilQCTest test = new CyrilQCTest(this, targetName, multi, name);
 		tests.add(test);
 	}
 
-	public void run(CyrilQCTest test) throws Throwable {
-		logLogoStartEnd();
-		logLogoLine(test.getName(), true);
-		logLogoStartEnd();
+	void run(CyrilQCTest test) throws Exception {
+		logSimpleLogo(test.getName());
+
+		final Project antProject = getAntCleanProject();
+		final CyrilQCRuntimeHelper runtimeHelper = getRuntimeHelper(antProject);
 		runtimeHelper.setMode(RuntimeMode.RUN_TEST);
 		runtimeHelper.setTestName(test.getName());
-		if (test.isMulti()) {
-			setMessageOutputLevel(engine.getConfiguration().getLoggingLevelInfrastructure());
-		} else {
-			setMessageOutputLevel(engine.getConfiguration().getLoggingLevelTest());
-		}
+
 		try {
-			antProject.executeTarget(test.getTargetName());
+
+			try {
+				runTargets(antProject, beforeTestTargets);
+				if (test.isMulti()) {
+					setMessageOutputLevel(engine.getConfiguration().getLoggingLevelInfrastructure());
+				} else {
+					setMessageOutputLevel(engine.getConfiguration().getLoggingLevelTest());
+				}
+				antProject.executeTarget(test.getTargetName());
+			} finally {
+				runTargets(antProject, afterTestTargets);
+			}
+
 			antProject.fireBuildFinished(null);
-		} catch (Throwable e) {
-			Throwable rootCause = unpackBuildExceptions(e);
+		} catch (final BuildException e) {
 			antProject.fireBuildFinished(e);
-			throw rootCause;
+			throw e;
+		} catch (final Throwable e) {
+			antProject.fireBuildFinished(e);
+			throw new BuildException(e);
 		} finally {
 			restoreMessageOutputLevel();
-			antProject.log("", engine.getConfiguration().getLoggingLevelLogo());
 		}
 	}
 
-	private Throwable unpackBuildExceptions(Throwable e) {
-		if (e.getCause() != null && e instanceof BuildException) {
-			return unpackBuildExceptions(e.getCause());
-		} else {
-			return e;
+	public void runBeforeModule() throws Exception {
+		if (!beforeModuleTargets.isEmpty()) {
+			logSimpleLogo(getEngine().getConfiguration().getBeforeModuleTargetPrefix());
+			final Project antProject = getAntCleanProject();
+			runTargets(antProject, beforeModuleTargets);
 		}
+	}
+
+	private void runTargets(Project project, List<String> targets) {
+		setMessageOutputLevel(engine.getConfiguration().getLoggingLevelTest());
+		try {
+			final Vector<String> v = new Vector<String>();
+			v.addAll(targets);
+			project.executeTargets(v);
+		} finally {
+			restoreMessageOutputLevel();
+		}
+
 	}
 
 	public CyrilQCEngine getEngine() {
@@ -156,13 +233,18 @@ public class CyrilQCProject {
 		restoreMessageOutputLevel();
 	}
 
-	private void logLogo(String msg) {
-		antProject.log(msg, engine.getConfiguration().getLoggingLevelLogo());
+	public void logSimpleLogo(String sigleLine) {
+		defaultAntProject.log("", engine.getConfiguration().getLoggingLevelLogo());
+		logLogoStartEnd();
+		logLogoLine(sigleLine, true);
+		logLogoStartEnd();
 	}
 
 	private void logLogoStartEnd() {
-		logLogo(StringUtils.characterSequence(engine.getConfiguration().getLogoCharacter(), engine.getConfiguration()
-				.getLogoLength()));
+		final String text = StringUtils.characterSequence(
+				engine.getConfiguration().getLogoCharacter(),
+				engine.getConfiguration().getLogoLength());
+		printLogoLine(text);
 	}
 
 	private void logLogoLine(String msg) {
@@ -170,8 +252,16 @@ public class CyrilQCProject {
 	}
 
 	private void logLogoLine(String msg, boolean center) {
-		logLogo(StringUtils.surroundString(msg, engine.getConfiguration().getLogoCharacter(), engine.getConfiguration()
-				.getLogoLength(), center));
+		final String text = StringUtils.surroundString(
+				msg,
+				engine.getConfiguration().getLogoCharacter(),
+				engine.getConfiguration().getLogoLength(),
+				center);
+		printLogoLine(text);
+	}
+
+	private void printLogoLine(String text) {
+		defaultAntProject.log(text, engine.getConfiguration().getLoggingLevelLogo());
 	}
 
 	public void setMessageOutputLevel(int msgLevel) {
@@ -185,4 +275,7 @@ public class CyrilQCProject {
 		consoleLogger.setMessageOutputLevel(msgLevel);
 	}
 
+	public static CyrilQCRuntimeHelper getRuntimeHelper(Project antProject) {
+		return (CyrilQCRuntimeHelper) antProject.getReference(RUNTIME_HELPER_KEY);
+	}
 }

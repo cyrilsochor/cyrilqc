@@ -1,6 +1,11 @@
 # CyrilQC TODO
+- execute targets beforeModule and afterModule - mohou jich byt vic - takze zase prefix... potreba dodelat a pridat jeste testy
+- redirect ant error output to standard - not mixed in jenkins
+- display infrastructure error on console
 - display column of difference by assertFileEquals
-- execute targets beforeModule and afterModule
+- failure in before target -> test have to return errror (not failure)
+- compare binay files
+- compare CSV file
 - each test must be excuted with clean project - no property set and no target executed
 - execute only specified test - command line argument and system propery for junit
 - configure another configuration class implementation
@@ -8,6 +13,7 @@
 - code completion in eclipse ant editor
 - all junit Assert functions must be implemented
 - all antunit tasks must be implemented
+- add autodetectMode attribute of tag assertFileEquals, autodetectMode="extension" -> use MimetypesFileTypeMap, autodetectMode="extension" use JMimeMagic, see http://www.rgagnon.com/javadetails/java-0487.html 
 - cloverETL task - only execute one graph
 - cloverETL component collecting comparrison results
 - integrate dbunit
@@ -24,7 +30,8 @@
 - web GUI
 	- editor
 	- history browser, duration graphs
-	- gooddata integration - better history statistics
+	- when test failure - accept new value by one click
+- gooddata integration - better history statistics
 - eclipse integration
 - load multiple configuration files - one toplevel element in eclipse junit view (low priority, workaround by ant import)
 - CyrilQC Cloud

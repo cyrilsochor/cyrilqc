@@ -5,17 +5,17 @@
 	xmlns:ac="antlib:net.sf.antcontrib"
 	xmlns:cqc="antlib:com.cyrilqc.core"
 >
-	<target name="todle-neni-test">
+	<target name="this-target-is-not-test">
 	</target>
 	
 	<target name="test-first" description="First empty test">
 		<echo message="First Test"/>
-		<cqc:assertEquals expected="1" actual="1" message="aaaa"/>
+		<cqc:assertequals expected="1" actual="1" message="aaaa"/>
 	</target>
 
 	<target name="test-second" description="First empty test">
 		<echo message="Second test"></echo>
-		<cqc:assertEquals expected="1" actual="2"  message="THIS_FAILURE_IS_EXPECTED"/>
+		<cqc:assertequals expected="1" actual="2"  message="THIS_FAILURE_IS_EXPECTED"/>
 	</target>
 
 	<target name="test-last" description="First empty test">

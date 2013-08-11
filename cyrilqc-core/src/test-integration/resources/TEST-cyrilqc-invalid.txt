@@ -10,29 +10,5 @@ Testcase: initializationError took X.XX sec
 	Caused an ERROR
 XML document structures must start and end within the same entity.
 /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-invalid.xml:2: XML document structures must start and end within the same entity.
-	at com.cyrilqc.core.CyrilQCProject.loadProject(XXX:XX)
-	at com.cyrilqc.core.CyrilQCProject.<init>(XXX:XX)
-	at com.cyrilqc.core.CyrilQCEngine.getProject(XXX:XX)
-	at com.cyrilqc.runner.junit4.JUnit4Runner.<init>(XXX:XX)
-	at java.lang.reflect.Constructor.newInstance(XXX:XX)
-	at java.lang.reflect.Constructor.newInstance(XXX:XX)
-Caused by: org.xml.sax.SAXParseException: XML document structures must start and end within the same entity.
-	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(XXX:XX)
-	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(XXX:XX)
-	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XXX:XX)
-	at com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(XXX:XX)
-	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.endEntity(XXX:XX)
-	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.endEntity(XXX:XX)
-	at com.sun.org.apache.xerces.internal.impl.XMLEntityManager.endEntity(XXX:XX)
-	at com.sun.org.apache.xerces.internal.impl.XMLEntityScanner.load(XXX:XX)
-	at com.sun.org.apache.xerces.internal.impl.XMLEntityScanner.skipChar(XXX:XX)
-	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XXX:XX)
-	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XXX:XX)
-	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XXX:XX)
-	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XXX:XX)
-	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XXX:XX)
-	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XXX:XX)
-	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XXX:XX)
-	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(XXX:XX)
-	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(XXX:XX)
+Caused by: org.xml.sax.SAXParseException; systemId: file:/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-invalid.xml; lineNumber: 2; columnNumber: 1; XML document structures must start and end within the same entity.
 

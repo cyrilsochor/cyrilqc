@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<antlib>
+<antlib  xmlns:current="ant:current">
 
 <taskdef name="test" classname="com.cyrilqc.core.task.TestTask" />
 
 <taskdef name="assert" classname="com.cyrilqc.core.task.AssertTask" />
-<taskdef name="assertEquals" classname="com.cyrilqc.core.task.AssertEqualsTask" />
-<taskdef name="assertFileEquals" classname="com.cyrilqc.core.task.AssertFileEqualsTask" />
+<taskdef name="assertequals" classname="com.cyrilqc.core.task.AssertEqualsTask" />
+<taskdef name="assertfileequals" classname="com.cyrilqc.core.task.AssertFileEqualsTask" />
 
 <!-- 
-  <macrodef name="test">
+<macrodef name="assertFileEquals">
+	<attribute name="expected"/>
+	<attribute name="actual"/>  
     <sequential>
-    	<echo message="JOOO"/>
+		<current:assertTextFileEquals expected="@{expected}" actual="@{actual}" />
     </sequential>
   </macrodef>
- -->
+   -->
 
 </antlib>

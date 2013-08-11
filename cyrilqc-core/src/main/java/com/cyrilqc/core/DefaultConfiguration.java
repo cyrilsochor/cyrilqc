@@ -1,72 +1,135 @@
 package com.cyrilqc.core;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Properties;
 
-import org.apache.tools.ant.Project;
-
-import com.cyrilqc.core.exception.CyrilQCRuntimeException;
+import com.cyrilqc.core.util.ConvertUtils;
+import com.cyrilqc.core.util.StreamUtils;
 
 public class DefaultConfiguration implements Configuration {
-	private static final String PROJECT_FILENAME_DEFAULT = "cyrilqc.xml";
-	private static final String PROJECT_FILE_SYSTEM_VARIABLE = "cyrilqc.project.file";
-	private static final String TEST_TARGET_PREFIX = "test";
-	private static final String MULTI_TEST_TARGET_PREFIX = "multitest";
-	private static final String PROJECT_NAME_PREFIX = "CyrilQC";
+	private static final String SYSTEM_PROPERTY_PREFIX = "cyrilqc.";
+	private static final String DEFAULT_CONFIGURATION_PROPERTIES = "cyrilqc-configuration.properties";
 
-	public URL getProjectURL() {
-		String projectPath = System.getProperty(PROJECT_FILE_SYSTEM_VARIABLE);
-		if (projectPath == null) {
-			projectPath = PROJECT_FILENAME_DEFAULT;
-		}
+	private final Properties defaultProperties;
+	private Properties userProperties;
 
-		final File projectFile = new File(projectPath);
-		if (!projectFile.exists()) {
-			throw new CyrilQCRuntimeException("Project file " + projectFile.getAbsolutePath() + " not found");
-		}
+	public DefaultConfiguration() throws UnsupportedEncodingException, IOException {
+		defaultProperties = StreamUtils.parseProperties(getClass().getResourceAsStream(DEFAULT_CONFIGURATION_PROPERTIES));
+	}
 
-		try {
-			return projectFile.toURI().toURL();
-		} catch (final MalformedURLException e) {
-			throw new CyrilQCRuntimeException("Invalid project file " + projectFile.getAbsolutePath(), e);
-		}
+	public String getProjectFile() {
+		return getProperty("project.file");
 	}
 
 	public String getTestTargetPrefix() {
-		return TEST_TARGET_PREFIX;
+		return getProperty("test.target.prefix");
 	}
 
 	public String getMultiTestTargetPrefix() {
-		return MULTI_TEST_TARGET_PREFIX;
+		return getProperty("multitest.target.prefix");
+	}
+
+	public String getBeforeModuleTargetPrefix() {
+		return getProperty("before.module.target.prefix");
+	}
+
+	public String getAfterModuleTargetPrefix() {
+		return getProperty("after.module.target.prefix");
+	}
+
+	public String getBeforeTestTargetPrefix() {
+		return getProperty("before.test.target.prefix");
+	}
+
+	public String getAfterTestTargetPrefix() {
+		return getProperty("after.test.target.prefix");
 	}
 
 	public String getProjectNamePrefix() {
-		return PROJECT_NAME_PREFIX;
+		return getProperty("project.name.prefix");
 	}
 
 	public int getLoggingLevelDefault() {
-		return Project.MSG_INFO;
+		return getIntegerPropery("logging.level.default");
 	}
 
 	public int getLoggingLevelTest() {
-		return Project.MSG_INFO;
+		return getIntegerPropery("logging.level.test");
 	}
 
 	public int getLoggingLevelInfrastructure() {
-		return Project.MSG_WARN;
+		return getIntegerPropery("logging.level.infrastructure");
 	}
 
 	public int getLoggingLevelLogo() {
-		return Project.MSG_INFO;
+		return getIntegerPropery("logging.level.logo");
 	}
 
 	public char getLogoCharacter() {
-		return ':';
+		return getCharProperty("logo.character");
 	}
 
 	public int getLogoLength() {
-		return 80;
+		return getIntegerPropery("logo.length");
+	}
+
+	private String getProperty(String key) {
+		String ret = null;
+
+		if (ret == null) {
+			ret = System.getProperty(SYSTEM_PROPERTY_PREFIX + key);
+		}
+
+		if (ret == null && userProperties != null) {
+			ret = userProperties.getProperty(key);
+		}
+
+		if (ret == null && defaultProperties != null) {
+			ret = defaultProperties.getProperty(key);
+		}
+
+		return ret;
+	}
+
+	private char getCharProperty(String key) {
+		return ConvertUtils.parseCharacter(getProperty(key));
+	}
+
+	@SuppressWarnings("unused")
+	private Boolean getBooleanProperty(String key) {
+		return ConvertUtils.parseBoolean(getProperty(key));
+	}
+
+	private Integer getIntegerPropery(String key) {
+		return ConvertUtils.parseInteger(getProperty(key));
+	}
+
+	@SuppressWarnings("unused")
+	private Long getLongProperty(String key) {
+		return ConvertUtils.parseLong(getProperty(key));
+	}
+
+	@SuppressWarnings("unused")
+	private Double getDoubleProperty(String key) {
+		return ConvertUtils.parseDouble(getProperty(key));
+	}
+
+	@SuppressWarnings("unused")
+	private Float getFloatProperty(String key) {
+		return ConvertUtils.parseFloat(getProperty(key));
+	}
+
+	@SuppressWarnings("unused")
+	private BigDecimal getBigDecimalProperty(String key) {
+		return ConvertUtils.parseBigDecimal(getProperty(key));
+	}
+
+	@SuppressWarnings("unused")
+	private BigInteger getBigIntegerProperty(String key) {
+		return ConvertUtils.parseBigInteger(getProperty(key));
 	}
 
 }
