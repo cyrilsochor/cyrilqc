@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+group = "com.cyrilqc"
+version = "0.1.0"
+description = "Cyril Quality Center"
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+	compile group: 'org.apache.ant', name:'ant', version:'1.8.4'
+	compile group: 'org.apache.httpcomponents', name:'httpclient', version:'4.2.2'
+	compile group: 'org.apache.commons', name:'commons-io', version:'1.3.2'
+}
+
+

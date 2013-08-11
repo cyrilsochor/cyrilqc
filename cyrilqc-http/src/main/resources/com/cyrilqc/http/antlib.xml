@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<antlib  xmlns:current="ant:current">
+
+<typedef name="http" classname="com.cyrilqc.http.HttpCondition"/>
+
+</antlib>
+
+
