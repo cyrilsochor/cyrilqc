@@ -1,5 +1,5 @@
 Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
-Tests run: 6, Failures: 1, Errors: 1, Time elapsed: X.XX sec
+Tests run: 6, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: X.XX sec
 ------------- Standard Output ---------------
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :                                   CyrilQC                                    :
@@ -67,12 +67,12 @@ Total time: X seconds
 ------------- Standard Error -----------------
 
 BUILD FAILED
-/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-many.xml:23: THIS_ERROR_IS_EXPECTED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-many.xml:23: THIS_ERROR_IS_EXPECTED
 
 Total time: X seconds
 
 BUILD FAILED
-/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-many.xml:18: THIS_FAILURE_IS_EXPECTED expected:<[1]> but was:<[2]>
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-many.xml:18: THIS_FAILURE_IS_EXPECTED expected:<[1]> but was:<[2]>
 
 Total time: X seconds
 ------------- ---------------- ---------------
@@ -81,7 +81,7 @@ Testcase: test-first took X.XX sec
 Testcase: test-last took X.XX sec
 	Caused an ERROR
 THIS_ERROR_IS_EXPECTED
-/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-many.xml:23: THIS_ERROR_IS_EXPECTED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-many.xml:23: THIS_ERROR_IS_EXPECTED
 
 Testcase: test-main took X.XX sec
 Testcase: test-second took X.XX sec

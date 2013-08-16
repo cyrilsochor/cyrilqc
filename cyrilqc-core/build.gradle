@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'junit', name: 'junit', version: '4.+'
+    compile group: 'junit', name: 'junit', version: '4.11'
 	compile group: 'org.apache.ant', name:'ant', version:'1.9.2'
 	runtime group: 'org.apache.ant', name:'ant-junit', version:'1.9.2'  
 	runtime group: 'org.apache.ant', name:'ant-junit4', version:'1.9.2'
@@ -62,7 +62,7 @@ task dist( dependsOn: distZip) {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.2'
+    gradleVersion = '1.7'
 }
 
 task all (dependsOn: [assemble, check, install, dist]) {

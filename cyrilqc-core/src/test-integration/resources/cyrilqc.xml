@@ -49,6 +49,7 @@
 			    		<replaceregex pattern="took (.*) sec" replace="took X.XX sec" flags="g"/>
 			    		<replaceregex pattern="Loading project (.*)/" replace="Loading project XXX/" flags="g"/>
 			    		<replaceregex pattern="^Total time: (.*)" replace="Total time: X seconds" flags="g"/>
+			    		<replaceregex pattern="([^ ]*)(/cyrilqc-core/src/test-integration/resources)" replace="/XXX\2" flags="g"/>
 					</tokenfilter>
 					<linecontainsregexp negate="true">
 					  <regexp pattern="\w*at (.*)\(.*\).*"/>

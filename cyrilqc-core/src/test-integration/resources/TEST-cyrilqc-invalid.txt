@@ -1,5 +1,5 @@
 Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
-Tests run: 1, Failures: 0, Errors: 1, Time elapsed: X.XX sec
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: X.XX sec
 ------------- Standard Output ---------------
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :                                   CyrilQC                                    :
@@ -9,6 +9,6 @@ Tests run: 1, Failures: 0, Errors: 1, Time elapsed: X.XX sec
 Testcase: initializationError took X.XX sec
 	Caused an ERROR
 XML document structures must start and end within the same entity.
-/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-invalid.xml:2: XML document structures must start and end within the same entity.
-Caused by: org.xml.sax.SAXParseException; systemId: file:/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-invalid.xml; lineNumber: 2; columnNumber: 1; XML document structures must start and end within the same entity.
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-invalid.xml:2: XML document structures must start and end within the same entity.
+Caused by: org.xml.sax.SAXParseException; systemId: /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-invalid.xml; lineNumber: 2; columnNumber: 1; XML document structures must start and end within the same entity.
 

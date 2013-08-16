@@ -1,5 +1,5 @@
 Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
-Tests run: 5, Failures: 3, Errors: 0, Time elapsed: X.XX sec
+Tests run: 5, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: X.XX sec
 ------------- Standard Output ---------------
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :                                   CyrilQC                                    :
@@ -58,7 +58,7 @@ Total time: X seconds
 ------------- Standard Error -----------------
 
 BUILD FAILED
-/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:23: Actual file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/mmm not found
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:23: Actual file /XXX/cyrilqc-core/src/test-integration/resources/data/mmm not found
 
 Total time: X seconds
 
@@ -67,15 +67,15 @@ BUILD FAILED
 Total time: X seconds
 
 BUILD FAILED
-/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:19: Expected file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/nnn not found
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:19: Expected file /XXX/cyrilqc-core/src/test-integration/resources/data/nnn not found
 
 Total time: X seconds
 ------------- ---------------- ---------------
 
 Testcase: testActualNonExisting took X.XX sec
 	FAILED
-/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:23: Actual file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/mmm not found
-junit.framework.AssertionFailedError: /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:23: Actual file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/mmm not found
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:23: Actual file /XXX/cyrilqc-core/src/test-integration/resources/data/mmm not found
+junit.framework.AssertionFailedError: /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:23: Actual file /XXX/cyrilqc-core/src/test-integration/resources/data/mmm not found
 
 Testcase: testBothNonExisting took X.XX sec
 Testcase: testDiffer took X.XX sec
@@ -83,7 +83,7 @@ Testcase: testDiffer took X.XX sec
 
 Testcase: testExpectedNonExisting took X.XX sec
 	FAILED
-/data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:19: Expected file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/nnn not found
-junit.framework.AssertionFailedError: /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:19: Expected file /data/sochor/workspaces/cyrilqc/cyrilqc-core/src/test-integration/resources/data/nnn not found
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:19: Expected file /XXX/cyrilqc-core/src/test-integration/resources/data/nnn not found
+junit.framework.AssertionFailedError: /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:19: Expected file /XXX/cyrilqc-core/src/test-integration/resources/data/nnn not found
 
 Testcase: testSame took X.XX sec
