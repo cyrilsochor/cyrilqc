@@ -83,7 +83,12 @@ public class JUnit4Runner extends ParentRunner<CyrilQCTest> implements Filterabl
 
 	@Override
 	protected Statement withBeforeClasses(Statement statement) {
-		return new RunBefores(project, statement);
+		return new RunBeforeModule(project, statement);
+	}
+
+	@Override
+	protected Statement withAfterClasses(Statement statement) {
+		return new RunAfterModule(project, statement);
 	}
 
 	private BuildException getFirstBuildException(BuildException e) {

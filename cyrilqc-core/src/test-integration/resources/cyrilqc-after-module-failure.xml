@@ -1,0 +1,41 @@
+<project
+	name="test-integration-before-after"
+	xmlns="antlib:org.apache.tools.ant"
+	xmlns:cqc="antlib:com.cyrilqc.core"
+>
+
+	<target name="before-module">
+		<echo>BEFORE MODULE</echo>
+	</target>
+
+	<target name="after-module-2">
+		<echo>AFTER MODULE 2</echo>
+	</target>
+
+	<target name="after-module-1">
+		<echo>AFTER MODULE 1</echo>
+	</target>
+	
+	<target name="before-test">
+		<echo>BEFORE TEST</echo>
+	</target>
+
+	<target name="after-test">
+		<echo>AFTER TEST</echo>
+	</target>
+
+	<target name="test-1">
+		<echo>THIS IS TEST 1</echo>
+		<copy file="no-file" tofile=""/>
+	</target>
+	
+	<target name="test-2">
+		<echo>THIS IS TEST 2</echo>
+		<cqc:assertequals expected="xxAxx" actual="xxBxx"/>
+	</target>
+	
+	<target name="test-3">
+		<echo>THIS IS TEST 3</echo>
+	</target>
+	
+</project>

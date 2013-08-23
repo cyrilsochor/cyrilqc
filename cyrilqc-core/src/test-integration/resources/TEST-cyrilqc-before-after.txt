@@ -136,6 +136,13 @@ after-test-2:
 
 BUILD SUCCESSFUL
 Total time: X seconds
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                 after-module                                 :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+after-module:
+     [echo] AFTER MODULE
 ------------- ---------------- ---------------
 
 Testcase: test-1-no-river took X.XX sec

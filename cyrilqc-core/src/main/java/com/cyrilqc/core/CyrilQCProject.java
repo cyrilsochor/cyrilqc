@@ -209,6 +209,14 @@ public class CyrilQCProject {
 		}
 	}
 
+	public void runAfterModule() throws Exception {
+		if (!afterModuleTargets.isEmpty()) {
+			logSimpleLogo(getEngine().getConfiguration().getAfterModuleTargetPrefix());
+			final Project antProject = getAntCleanProject();
+			runTargets(antProject, afterModuleTargets);
+		}
+	}
+
 	private void runTargets(Project project, List<String> targets) {
 		setMessageOutputLevel(engine.getConfiguration().getLoggingLevelTest());
 		try {
