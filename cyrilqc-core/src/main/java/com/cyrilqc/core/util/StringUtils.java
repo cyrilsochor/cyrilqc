@@ -43,7 +43,12 @@ public class StringUtils {
 		return ret.toString();
 	}
 
-	public static boolean isNotEmpty(String s) {
-		return s != null && s.length() > 0;
+	public static boolean isEmpty(CharSequence s) {
+		return s == null || s.length() == 0;
 	}
+
+	public static boolean isNotEmpty(CharSequence s) {
+		return s != null && s.length() != 0;
+	}
+
 }

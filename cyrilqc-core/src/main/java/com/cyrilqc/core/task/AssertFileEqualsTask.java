@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import javax.activation.MimetypesFileTypeMap;
-
 import org.apache.tools.ant.Project;
 
 import com.cyrilqc.core.exception.BuildAssertionException;
@@ -42,8 +40,11 @@ public class AssertFileEqualsTask extends AssertionTask {
 			throw new BuildAssertionException("Actual file " + actualFile.getAbsolutePath() + " not found", getLocation());
 		}
 
-		final String contentType = MimetypesFileTypeMap.getDefaultFileTypeMap().getContentType(getExpected());
-		log("Autodetected content type '" + contentType + "' of file " + getExpected(), Project.MSG_INFO);
+		// MimetypesFileTypeMap not used yet - java-6 required
+		// final String contentType =
+		// javax.activation.MimetypesFileTypeMap.MimetypesFileTypeMap.getDefaultFileTypeMap().getContentType(getExpected());
+		// log("Autodetected content type '" + contentType + "' of file " +
+		// getExpected(), Project.MSG_INFO);
 
 		final StreamComparator comparator = new TextStreamComparator();
 		comparator.setAntProject(getProject());

@@ -39,7 +39,7 @@ public class ConvertUtils {
 	};
 
 	public static Boolean parseBoolean(final String valueString) {
-		if (valueString == null || valueString.isEmpty()) {
+		if (StringUtils.isEmpty(valueString)) {
 			return null;
 		} else {
 			return Boolean.parseBoolean(valueString);
@@ -47,7 +47,7 @@ public class ConvertUtils {
 	}
 
 	public static Integer parseInteger(final String valueString) {
-		if (valueString == null || valueString.isEmpty()) {
+		if (StringUtils.isEmpty(valueString)) {
 			return null;
 		} else {
 			return Integer.valueOf(valueString);
@@ -55,7 +55,7 @@ public class ConvertUtils {
 	}
 
 	public static Long parseLong(final String valueString) {
-		if (valueString == null || valueString.isEmpty()) {
+		if (StringUtils.isEmpty(valueString)) {
 			return null;
 		} else {
 			return Long.valueOf(valueString);
@@ -63,7 +63,7 @@ public class ConvertUtils {
 	}
 
 	public static Float parseFloat(final String valueString) {
-		if (valueString == null || valueString.isEmpty()) {
+		if (StringUtils.isEmpty(valueString)) {
 			return null;
 		} else {
 			return Float.valueOf(valueString);
@@ -71,7 +71,7 @@ public class ConvertUtils {
 	}
 
 	public static Double parseDouble(final String valueString) {
-		if (valueString == null || valueString.isEmpty()) {
+		if (StringUtils.isEmpty(valueString)) {
 			return null;
 		} else {
 			return Double.valueOf(valueString);
@@ -79,7 +79,7 @@ public class ConvertUtils {
 	}
 
 	public static BigDecimal parseBigDecimal(final String valueString) {
-		if (valueString == null || valueString.isEmpty()) {
+		if (StringUtils.isEmpty(valueString)) {
 			return null;
 		} else {
 			return new BigDecimal(valueString);
@@ -87,7 +87,7 @@ public class ConvertUtils {
 	}
 
 	public static BigInteger parseBigInteger(final String valueString) {
-		if (valueString == null || valueString.isEmpty()) {
+		if (StringUtils.isEmpty(valueString)) {
 			return null;
 		} else {
 			return new BigInteger(valueString);

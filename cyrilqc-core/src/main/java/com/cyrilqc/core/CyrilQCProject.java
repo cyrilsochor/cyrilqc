@@ -6,8 +6,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
-import java.util.concurrent.BlockingDeque;
-import java.util.concurrent.LinkedBlockingDeque;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DefaultLogger;
@@ -34,7 +32,7 @@ public class CyrilQCProject {
 	private File projectFile;
 	private DefaultLogger consoleLogger;
 	private ProjectHelper antHelper;
-	private final BlockingDeque<Integer> messageOutputLevels = new LinkedBlockingDeque<Integer>();
+	private final LinkedList<Integer> messageOutputLevels = new LinkedList<Integer>();
 
 	public CyrilQCProject(CyrilQCEngine engine, URL projectURL) throws Exception {
 		this.engine = engine;
@@ -296,14 +294,18 @@ public class CyrilQCProject {
 	}
 
 	public void setMessageOutputLevel(int msgLevel) {
-		messageOutputLevels.add(msgLevel);
-		consoleLogger.setMessageOutputLevel(msgLevel);
+		synchronized (messageOutputLevels) {
+			messageOutputLevels.add(msgLevel);
+			consoleLogger.setMessageOutputLevel(msgLevel);
+		}
 	}
 
 	public void restoreMessageOutputLevel() {
-		messageOutputLevels.removeLast();
-		final Integer msgLevel = messageOutputLevels.peekLast();
-		consoleLogger.setMessageOutputLevel(msgLevel);
+		synchronized (messageOutputLevels) {
+			messageOutputLevels.removeLast();
+			final Integer msgLevel = messageOutputLevels.getLast();
+			consoleLogger.setMessageOutputLevel(msgLevel);
+		}
 	}
 
 	public static CyrilQCRuntimeHelper getRuntimeHelper(Project antProject) {

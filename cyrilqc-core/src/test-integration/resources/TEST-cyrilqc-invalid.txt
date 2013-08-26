@@ -10,5 +10,5 @@ Testcase: initializationError took X.XX sec
 	Caused an ERROR
 XML document structures must start and end within the same entity.
 /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-invalid.xml:2: XML document structures must start and end within the same entity.
-Caused by: org.xml.sax.SAXParseException; systemId: /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-invalid.xml; lineNumber: 2; columnNumber: 1; XML document structures must start and end within the same entity.
+Caused by: org.xml.sax.SAXParseException: XML document structures must start and end within the same entity.
 

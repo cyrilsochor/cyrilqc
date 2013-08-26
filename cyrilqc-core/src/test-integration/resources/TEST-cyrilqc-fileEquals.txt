@@ -35,7 +35,6 @@ Total time: X seconds
 
 testDiffer:
 [cqc:assertfileequals] Comparing files, expected data/mountains.txt and actual data/mountains-8000.txt
-[cqc:assertfileequals] Autodetected content type 'application/octet-stream' of file data/mountains.txt
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :                           testExpectedNonExisting                            :
@@ -50,7 +49,6 @@ testExpectedNonExisting:
 
 testSame:
 [cqc:assertfileequals] Comparing files, expected data/mountains.txt and actual data/mountains.txt
-[cqc:assertfileequals] Autodetected content type 'application/octet-stream' of file data/mountains.txt
 
 BUILD SUCCESSFUL
 Total time: X seconds
