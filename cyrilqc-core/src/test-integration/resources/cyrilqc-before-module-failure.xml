@@ -1,0 +1,37 @@
+<project
+	name="test-integration-before-after"
+	xmlns="antlib:org.apache.tools.ant"
+	xmlns:cqc="antlib:com.cyrilqc.core"
+>
+
+	<target name="before-module-1">
+		<echo>BEFORE MODULE 1</echo>
+	</target>
+
+	<target name="after-module-1">
+		<echo>AFTER MODULE 1</echo>
+	</target>
+
+	<target name="before-module-2">
+		<echo>BEFORE MODULE 2</echo>
+		<fail message="FAIL BEFORE MODULE 2"/>
+	</target>
+
+	<target name="after-module-2">
+		<echo>AFTER MODULE 2</echo>
+		<fail message="FAIL AFTER MODULE 2"/>
+	</target>
+	
+	<target name="before-module-3">
+		<echo>BEFORE MODULE 3</echo>
+	</target>
+
+	<target name="after-module-3">
+		<echo>AFTER MODULE 3</echo>
+	</target>
+
+	<target name="test-1">
+		<echo>THIS IS TEST 1</echo>
+	</target>
+	
+</project>

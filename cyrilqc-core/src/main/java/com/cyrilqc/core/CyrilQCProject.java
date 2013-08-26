@@ -53,21 +53,21 @@ public class CyrilQCProject {
 
 		this.defaultAntProject = prepareAntProject();
 
-		logLogoStartEnd();
-		logLogoLine("CyrilQC", true);
-		logLogoLine("Loading project " + projectFile.getAbsolutePath());
+		logBannerStartEnd();
+		logBannerLine("CyrilQC", true);
+		logBannerLine("Loading project " + projectFile.getAbsolutePath());
 
 		parseProject(defaultAntProject);
 		if (defaultAntProject.getName() != null) {
-			logLogoLine("Project name " + defaultAntProject.getName());
+			logBannerLine("Project name " + defaultAntProject.getName());
 		}
 
 		scanProject();
 		for (final CyrilQCTest test : tests) {
-			logLogoLine("Found " + test.getName());
+			logBannerLine("Found " + test.getName());
 		}
 
-		logLogoStartEnd();
+		logBannerStartEnd();
 	}
 
 	public String getName() {
@@ -168,7 +168,7 @@ public class CyrilQCProject {
 	}
 
 	void run(CyrilQCTest test) throws Exception {
-		logSimpleLogo(test.getName());
+		logSimpleBanner(test.getName());
 
 		final Project antProject = getAntCleanProject();
 		final CyrilQCRuntimeHelper runtimeHelper = getRuntimeHelper(antProject);
@@ -178,7 +178,7 @@ public class CyrilQCProject {
 		try {
 
 			try {
-				runTargets(antProject, beforeTestTargets);
+				runTargets(antProject, beforeTestTargets, false, null);
 				if (test.isMulti()) {
 					setMessageOutputLevel(engine.getConfiguration().getLoggingLevelInfrastructure());
 				} else {
@@ -186,7 +186,7 @@ public class CyrilQCProject {
 				}
 				antProject.executeTarget(test.getTargetName());
 			} finally {
-				runTargets(antProject, afterTestTargets);
+				runTargets(antProject, afterTestTargets, true, null);
 			}
 
 			antProject.fireBuildFinished(null);
@@ -201,32 +201,55 @@ public class CyrilQCProject {
 		}
 	}
 
-	public void runBeforeModule() throws Exception {
-		if (!beforeModuleTargets.isEmpty()) {
-			logSimpleLogo(getEngine().getConfiguration().getBeforeModuleTargetPrefix());
-			final Project antProject = getAntCleanProject();
-			runTargets(antProject, beforeModuleTargets);
+	public void runBeforeModule() throws Throwable {
+		runTargets(getAntCleanProject(), beforeModuleTargets, false, getEngine().getConfiguration().getBeforeModuleTargetPrefix());
+	}
+
+	public void runAfterModule() throws Throwable {
+		runTargets(getAntCleanProject(), afterModuleTargets, true, getEngine().getConfiguration().getAfterModuleTargetPrefix());
+	}
+
+	protected void runTargets(final Project project, final List<String> targets, final boolean recoverError,
+			final String bannerMessage) throws Throwable {
+		if (targets != null && !targets.isEmpty()) {
+			if (bannerMessage != null) {
+				logSimpleBanner(bannerMessage);
+			}
+
+			setMessageOutputLevel(engine.getConfiguration().getLoggingLevelTest());
+			try {
+				if (recoverError) {
+					executeTargetsRecoverError(project, targets);
+				} else {
+					executeTargetsToFirstError(project, targets);
+				}
+			} finally {
+				restoreMessageOutputLevel();
+			}
 		}
 	}
 
-	public void runAfterModule() throws Exception {
-		if (!afterModuleTargets.isEmpty()) {
-			logSimpleLogo(getEngine().getConfiguration().getAfterModuleTargetPrefix());
-			final Project antProject = getAntCleanProject();
-			runTargets(antProject, afterModuleTargets);
-		}
-	}
-
-	private void runTargets(Project project, List<String> targets) {
-		setMessageOutputLevel(engine.getConfiguration().getLoggingLevelTest());
+	private void executeTargetsToFirstError(Project project, List<String> targets) throws Throwable {
 		try {
 			final Vector<String> v = new Vector<String>();
 			v.addAll(targets);
 			project.executeTargets(v);
-		} finally {
-			restoreMessageOutputLevel();
+		} catch (Throwable e) {
+			project.fireBuildFinished(e);
+			throw e;
 		}
+	}
 
+	private void executeTargetsRecoverError(Project project, List<String> targets) throws Throwable {
+		for (String target : targets) {
+			try {
+				final Vector<String> v = new Vector<String>();
+				v.add(target);
+				project.executeTargets(v);
+			} catch (Throwable e) {
+				project.fireBuildFinished(e);
+			}
+		}
 	}
 
 	public CyrilQCEngine getEngine() {
@@ -241,35 +264,35 @@ public class CyrilQCProject {
 		restoreMessageOutputLevel();
 	}
 
-	public void logSimpleLogo(String sigleLine) {
-		defaultAntProject.log("", engine.getConfiguration().getLoggingLevelLogo());
-		logLogoStartEnd();
-		logLogoLine(sigleLine, true);
-		logLogoStartEnd();
+	public void logSimpleBanner(String sigleLine) {
+		defaultAntProject.log("", engine.getConfiguration().getLoggingLevelBanner());
+		logBannerStartEnd();
+		logBannerLine(sigleLine, true);
+		logBannerStartEnd();
 	}
 
-	private void logLogoStartEnd() {
+	private void logBannerStartEnd() {
 		final String text = StringUtils.characterSequence(
-				engine.getConfiguration().getLogoCharacter(),
-				engine.getConfiguration().getLogoLength());
-		printLogoLine(text);
+				engine.getConfiguration().getBannerCharacter(),
+				engine.getConfiguration().getBannerLength());
+		printBannerLine(text);
 	}
 
-	private void logLogoLine(String msg) {
-		logLogoLine(msg, false);
+	private void logBannerLine(String msg) {
+		logBannerLine(msg, false);
 	}
 
-	private void logLogoLine(String msg, boolean center) {
+	private void logBannerLine(String msg, boolean center) {
 		final String text = StringUtils.surroundString(
 				msg,
-				engine.getConfiguration().getLogoCharacter(),
-				engine.getConfiguration().getLogoLength(),
+				engine.getConfiguration().getBannerCharacter(),
+				engine.getConfiguration().getBannerLength(),
 				center);
-		printLogoLine(text);
+		printBannerLine(text);
 	}
 
-	private void printLogoLine(String text) {
-		defaultAntProject.log(text, engine.getConfiguration().getLoggingLevelLogo());
+	private void printBannerLine(String text) {
+		defaultAntProject.log(text, engine.getConfiguration().getLoggingLevelBanner());
 	}
 
 	public void setMessageOutputLevel(int msgLevel) {

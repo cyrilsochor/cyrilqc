@@ -16,8 +16,11 @@ class RunAfterModule extends Statement {
 
 	@Override
 	public void evaluate() throws Throwable {
-		next.evaluate();
-		project.runAfterModule();
+		try {
+			next.evaluate();
+		} finally {
+			project.runAfterModule();
+		}
 	}
 
 }

@@ -16,11 +16,11 @@ public interface Configuration {
 
 	int getLoggingLevelInfrastructure();
 
-	int getLoggingLevelLogo();
+	int getLoggingLevelBanner();
 
-	char getLogoCharacter();
+	char getBannerCharacter();
 
-	int getLogoLength();
+	int getBannerLength();
 
 	String getBeforeModuleTargetPrefix();
 

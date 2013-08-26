@@ -64,16 +64,16 @@ public class DefaultConfiguration implements Configuration {
 		return getIntegerPropery("logging.level.infrastructure");
 	}
 
-	public int getLoggingLevelLogo() {
-		return getIntegerPropery("logging.level.logo");
+	public int getLoggingLevelBanner() {
+		return getIntegerPropery("logging.level.banner");
 	}
 
-	public char getLogoCharacter() {
-		return getCharProperty("logo.character");
+	public char getBannerCharacter() {
+		return getCharProperty("banner.character");
 	}
 
-	public int getLogoLength() {
-		return getIntegerPropery("logo.length");
+	public int getBannerLength() {
+		return getIntegerPropery("banner.length");
 	}
 
 	private String getProperty(String key) {
@@ -89,6 +89,10 @@ public class DefaultConfiguration implements Configuration {
 
 		if (ret == null && defaultProperties != null) {
 			ret = defaultProperties.getProperty(key);
+		}
+
+		if (ret == null) {
+			throw new NullPointerException("Configuration property '" + key + "' not defined");
 		}
 
 		return ret;

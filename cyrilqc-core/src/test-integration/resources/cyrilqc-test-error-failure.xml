@@ -1,5 +1,5 @@
 <project
-	name="test-integration-before-after"
+	name="test-integration-test-error-failure"
 	xmlns="antlib:org.apache.tools.ant"
 	xmlns:cqc="antlib:com.cyrilqc.core"
 >

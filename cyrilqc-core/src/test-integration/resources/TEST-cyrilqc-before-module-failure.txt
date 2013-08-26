@@ -1,0 +1,51 @@
+Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
+Tests run: 0, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: X.XX sec
+------------- Standard Output ---------------
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                   CyrilQC                                    :
+:  Loading project XXX/cyrilqc-before-module-failure.xml
+:  Project name test-integration-before-after                                  :
+:  Found test-1                                                                :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                before-module                                 :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+before-module-1:
+     [echo] BEFORE MODULE 1
+
+before-module-2:
+     [echo] BEFORE MODULE 2
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                 after-module                                 :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+after-module-1:
+     [echo] AFTER MODULE 1
+
+after-module-2:
+     [echo] AFTER MODULE 2
+
+after-module-3:
+     [echo] AFTER MODULE 3
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+
+BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-module-failure.xml:17: FAIL BEFORE MODULE 2
+
+Total time: X seconds
+
+BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-module-failure.xml:22: FAIL AFTER MODULE 2
+
+Total time: X seconds
+------------- ---------------- ---------------
+
+Testcase: CyrilQC:test-integration-before-after took X.XX sec
+	Caused an ERROR
+FAIL BEFORE MODULE 2
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-module-failure.xml:17: FAIL BEFORE MODULE 2
+

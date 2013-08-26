@@ -1,0 +1,83 @@
+Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: X.XX sec
+------------- Standard Output ---------------
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                   CyrilQC                                    :
+:  Loading project XXX/cyrilqc-before-test-failure.xml
+:  Project name test-integration-before-after                                  :
+:  Found test-1                                                                :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                before-module                                 :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+before-module-1:
+     [echo] BEFORE MODULE 1
+
+before-module-2:
+     [echo] BEFORE MODULE 2
+
+before-module-3:
+     [echo] BEFORE MODULE 3
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                    test-1                                    :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+before-test-1:
+     [echo] BEFORE TEST 1
+
+before-test-2:
+     [echo] BEFORE TEST 2
+
+after-test-1:
+     [echo] AFTER TEST 1
+
+after-test-2:
+     [echo] AFTER TEST 2
+
+after-test-3:
+     [echo] AFTER TEST 3
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                 after-module                                 :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+after-module-1:
+     [echo] AFTER MODULE 1
+
+after-module-2:
+     [echo] AFTER MODULE 2
+
+after-module-3:
+     [echo] AFTER MODULE 3
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+
+BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-test-failure.xml:44: FAIL BEFORE MODULE 2
+
+Total time: X seconds
+
+BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-test-failure.xml:49: FAIL AFTER TEST 2
+
+Total time: X seconds
+
+BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-test-failure.xml:44: FAIL BEFORE MODULE 2
+
+Total time: X seconds
+
+BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-test-failure.xml:21: FAIL AFTER MODULE 2
+
+Total time: X seconds
+------------- ---------------- ---------------
+
+Testcase: test-1 took X.XX sec
+	Caused an ERROR
+FAIL BEFORE MODULE 2
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-test-failure.xml:44: FAIL BEFORE MODULE 2
+

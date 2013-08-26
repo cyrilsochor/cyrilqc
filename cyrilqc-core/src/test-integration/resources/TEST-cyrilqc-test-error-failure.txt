@@ -3,8 +3,8 @@ Tests run: 3, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: X.XX sec
 ------------- Standard Output ---------------
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :                                   CyrilQC                                    :
-:  Loading project XXX/cyrilqc-after-module-failure.xml
-:  Project name test-integration-before-after                                  :
+:  Loading project XXX/cyrilqc-test-error-failure.xml
+:  Project name test-integration-test-error-failure                            :
 :  Found test-1                                                                :
 :  Found test-2                                                                :
 :  Found test-3                                                                :
@@ -72,12 +72,12 @@ after-module-2:
 ------------- Standard Error -----------------
 
 BUILD FAILED
-/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-after-module-failure.xml:29: Warning: Could not find file /XXX/cyrilqc-core/src/test-integration/resources/no-file to copy.
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-test-error-failure.xml:29: Warning: Could not find file /XXX/cyrilqc-core/src/test-integration/resources/no-file to copy.
 
 Total time: X seconds
 
 BUILD FAILED
-/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-after-module-failure.xml:34: expected:<xx[A]xx> but was:<xx[B]xx>
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-test-error-failure.xml:34: expected:<xx[A]xx> but was:<xx[B]xx>
 
 Total time: X seconds
 ------------- ---------------- ---------------
@@ -85,7 +85,7 @@ Total time: X seconds
 Testcase: test-1 took X.XX sec
 	Caused an ERROR
 Warning: Could not find file /XXX/cyrilqc-core/src/test-integration/resources/no-file to copy.
-/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-after-module-failure.xml:29: Warning: Could not find file /XXX/cyrilqc-core/src/test-integration/resources/no-file to copy.
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-test-error-failure.xml:29: Warning: Could not find file /XXX/cyrilqc-core/src/test-integration/resources/no-file to copy.
 
 Testcase: test-2 took X.XX sec
 	FAILED
