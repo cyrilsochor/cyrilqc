@@ -1,0 +1,41 @@
+allprojects {
+	apply plugin: 'eclipse'
+	group = 'com.cyrilqc'
+	version = '0.1.0'
+
+	task wrapper(type: Wrapper) {
+	    gradleVersion = '1.7'
+	}
+}
+
+subprojects {
+	repositories {
+	    mavenCentral()
+	    mavenLocal()
+	}
+	configurations {
+		testCompile
+	}
+	configurations.all {
+    	resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        	if (details.requested.group == 'org.apache.ant') {
+            	details.useVersion '1.9.2'
+        	}
+        	if (details.requested.group == 'junit') {
+            	details.useVersion '4.11'
+        	}
+		}        	
+	}    
+    dependencies {
+        testCompile "junit:junit"
+    }
+}
+
+subprojects {
+	afterEvaluate{ Project project ->
+		if(project.tasks.collect{it.name}.contains("jar")){
+			sourceCompatibility = 1.5
+			targetCompatibility = 1.5
+		}
+	}
+}

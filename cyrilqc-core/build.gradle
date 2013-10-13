@@ -1,41 +1,31 @@
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'maven'
 apply plugin: 'project-report'
 apply plugin: 'application'
 
-group = "com.cyrilqc"
-version = "0.1.0"
-description = "Cyril Quality Center"
+description = "Cyril Quality Center - core"
 
 applicationName = "cyrilqc" // used by application plugin
 
-sourceCompatibility = 1.5
-
 mainClassName = "com.cyrilqc.runner.CyrilQC"
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-}
-
 dependencies {
-    compile group: 'junit', name: 'junit', version: '4.11'
-	compile group: 'org.apache.ant', name:'ant', version:'1.9.2'
-	runtime group: 'org.apache.ant', name:'ant-junit', version:'1.9.2'  
-	runtime group: 'org.apache.ant', name:'ant-junit4', version:'1.9.2'
-	runtime group: 'org.apache.ant', name:'ant-jsch', version:'1.9.2'
-	runtime group: 'org.apache.ant', name:'ant-apache-log4j', version:'1.9.2'
-	runtime group: 'org.apache.ant', name:'ant-apache-bsf', version:'1.9.2'
-	runtime group: 'org.apache.ant', name:'ant-apache-bcel', version:'1.9.2'
-	runtime group: 'org.apache.ant', name:'ant-apache-xalan2', version:'1.9.2'
+    compile group: 'junit', name: 'junit'
+	compile group: 'org.apache.ant', name:'ant'
+	runtime group: 'org.apache.ant', name:'ant-junit'  
+	runtime group: 'org.apache.ant', name:'ant-junit4'
+	runtime group: 'org.apache.ant', name:'ant-jsch'
+	runtime group: 'org.apache.ant', name:'ant-apache-log4j'
+	runtime group: 'org.apache.ant', name:'ant-apache-bsf'
+	runtime group: 'org.apache.ant', name:'ant-apache-bcel'
+	runtime group: 'org.apache.ant', name:'ant-apache-xalan2'
 	runtime group: 'ant-contrib', name:'ant-contrib', version:'1.0b3', transitive: false
 //	testRuntime group:'ant4eclipse', name:'ant4eclipse', version:'0.4.2' //version:'0.5.0.rc1'  
 //	compile group: 'org.slf4j', name:'slf4j-log4j12', version:'1.7.2'
 }
 
 
-task testIntegration ( dependsOn: installApp, desription: "Runs the integration tests." ) << {
+task testIntegration ( dependsOn: installApp, description: "Runs the integration tests." ) << {
 	testResultsDir.mkdirs()
 	def outFile = new File(testResultsDir, "integration-test-out.txt" )
 	def outStream = new FileOutputStream( outFile )
@@ -61,10 +51,6 @@ task dist( dependsOn: distZip) {
     }
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.7'
-}
-
 task all (dependsOn: [assemble, check, install, dist]) {
 }
  
@@ -84,7 +70,6 @@ task testBuildSimple << {
 		arg( value:"-Dbasedir=/data/sochor/workspaces/cyrilqc/cyrilqc-core" )
 	}
 }
-
 
 
 task listJars << {
