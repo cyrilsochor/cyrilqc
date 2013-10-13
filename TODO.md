@@ -1,12 +1,10 @@
 # CyrilQC TODO
-- redirect ant error output to standard - not mixed in jenkins
 - display column of difference by assertFileEquals
 - compare binay files
 - compare CSV file
 - compare directiory tree
 - execute only specified test - command line argument and system propery for junit
 - configure another configuration class implementation
-- load configuration from property file and java system properties
 - code completion in eclipse ant editor
 - all junit Assert functions must be implemented
 - all antunit tasks must be implemented

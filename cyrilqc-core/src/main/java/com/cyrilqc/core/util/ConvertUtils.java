@@ -1,5 +1,6 @@
 package com.cyrilqc.core.util;
 
+import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.DateFormat;
@@ -123,6 +124,16 @@ public class ConvertUtils {
 			return null;
 		} else {
 			return durationToString((long) duration);
+		}
+	}
+
+	public static PrintStream parsePrintStream(String streamDefinition) {
+		if ("system:out".equals(streamDefinition)) {
+			return System.out;
+		} else if ("system:err".equals(streamDefinition)) {
+			return System.err;
+		} else {
+			throw new IllegalArgumentException("Invalid stream definition '" + streamDefinition + "'");
 		}
 	}
 

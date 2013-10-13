@@ -1,5 +1,7 @@
 package com.cyrilqc.core;
 
+import java.io.PrintStream;
+
 public interface Configuration {
 
 	String getProjectFile();
@@ -29,5 +31,9 @@ public interface Configuration {
 	String getBeforeTestTargetPrefix();
 
 	String getAfterTestTargetPrefix();
+
+	PrintStream getOutputPrintStream();
+
+	PrintStream getErrorPrintStream();
 
 }

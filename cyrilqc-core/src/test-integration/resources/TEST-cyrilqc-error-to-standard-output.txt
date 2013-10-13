@@ -1,0 +1,27 @@
+Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: X.XX sec
+------------- Standard Output ---------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~                                   CyrilQC                                    ~
+~  Loading project XXX/cyrilqc-error-to-standard-output.xml
+~  Found testSimple                                                            ~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~                                  testSimple                                  ~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+testSimple:
+     [echo] THIS IS SIMPLE TEST
+
+BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-error-to-standard-output.xml:4: SIMPLE FAIL
+
+Total time: X seconds
+------------- ---------------- ---------------
+
+Testcase: testSimple took X.XX sec
+	Caused an ERROR
+SIMPLE FAIL
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-error-to-standard-output.xml:4: SIMPLE FAIL
+

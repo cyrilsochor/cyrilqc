@@ -1,6 +1,9 @@
 package com.cyrilqc.core;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -11,13 +14,27 @@ import com.cyrilqc.core.util.StreamUtils;
 
 public class DefaultConfiguration implements Configuration {
 	private static final String SYSTEM_PROPERTY_PREFIX = "cyrilqc.";
-	private static final String DEFAULT_CONFIGURATION_PROPERTIES = "cyrilqc-configuration.properties";
+	private static final String SYSTEM_PROPERTY_COFIG = SYSTEM_PROPERTY_PREFIX + "config.file";
+
+	private static final String DEFAULT_CONFIG_RESOURCE = "cyrilqc-config-default.properties";
 
 	private final Properties defaultProperties;
 	private Properties userProperties;
 
 	public DefaultConfiguration() throws UnsupportedEncodingException, IOException {
-		defaultProperties = StreamUtils.parseProperties(getClass().getResourceAsStream(DEFAULT_CONFIGURATION_PROPERTIES));
+		defaultProperties = StreamUtils.parseProperties(getClass().getResourceAsStream(DEFAULT_CONFIG_RESOURCE));
+
+		final String userConfigLocation = System.getProperty(SYSTEM_PROPERTY_COFIG);
+		if (userConfigLocation != null) {
+			final String userConfigLocationTrimmed = userConfigLocation.trim();
+			if (!"".equals(userConfigLocationTrimmed)) {
+				final File userConfigFile = new File(userConfigLocationTrimmed);
+				if (!userConfigFile.isFile()) {
+					throw new IllegalArgumentException("Configuration file " + userConfigFile.getAbsolutePath() + " not found");
+				}
+				userProperties = StreamUtils.parseProperties(new FileInputStream(userConfigFile));
+			}
+		}
 	}
 
 	public String getProjectFile() {
@@ -74,6 +91,14 @@ public class DefaultConfiguration implements Configuration {
 
 	public int getBannerLength() {
 		return getIntegerPropery("banner.length");
+	}
+
+	public PrintStream getOutputPrintStream() {
+		return getPrintStream("output.stream");
+	}
+
+	public PrintStream getErrorPrintStream() {
+		return getPrintStream("error.stream");
 	}
 
 	private String getProperty(String key) {
@@ -134,6 +159,10 @@ public class DefaultConfiguration implements Configuration {
 	@SuppressWarnings("unused")
 	private BigInteger getBigIntegerProperty(String key) {
 		return ConvertUtils.parseBigInteger(getProperty(key));
+	}
+
+	private PrintStream getPrintStream(String key) {
+		return ConvertUtils.parsePrintStream(getProperty(key));
 	}
 
 }

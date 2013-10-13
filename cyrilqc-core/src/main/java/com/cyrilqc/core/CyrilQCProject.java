@@ -45,8 +45,8 @@ public class CyrilQCProject {
 		projectFile = new File(projectURL.getFile());
 
 		consoleLogger = new DefaultLogger();
-		consoleLogger.setErrorPrintStream(System.err);
-		consoleLogger.setOutputPrintStream(System.out);
+		consoleLogger.setOutputPrintStream(engine.getConfiguration().getOutputPrintStream());
+		consoleLogger.setErrorPrintStream(engine.getConfiguration().getErrorPrintStream());
 
 		antHelper = ProjectHelper.getProjectHelper();
 

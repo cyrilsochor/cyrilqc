@@ -22,7 +22,13 @@
 	<target name="onetest">
 		<basename property="project" file="${test.project.file}" suffix=".xml"/>
 		<cqc:test name="${project}">
-			<property name="project" value="cyrilqc-simple"/>
+			<property name="project.file.param" value="${project}.xml" />
+
+			<property name="project.config.file" value="${project}.properties"/>
+			<available property="config.file.param" file="${project.config.file}" value="${project.config.file}"/>
+			<property name="config.file.param" value=""/>
+			
+			<echo message="Running test project.file=${project.file.param} config.file=${config.file.param}"/>
 			<junit
 					fork="true"
 					printsummary="true" 
@@ -37,7 +43,8 @@
 					<!-- variant 3: use classpath of eclipse project <ae:getEclipseClasspath xmlns:ae="antlib:net.sf.ant4eclipse" workspace="${cyrilqc.dir}/.." projectName="cyrilqc-core" pathId="eclipse.cyrilqc.path"/> -->
 					<!-- variant 4: use all libs in installation directory <path id="cyrilqc.path"><fileset dir="${build.dir}/install/cyrilqc/lib"/></path>	-->		                         
 				</classpath>
-				<sysproperty key="cyrilqc.project.file" value="${project}.xml"/>
+				<sysproperty key="cyrilqc.project.file" value="${project.file.param}"/>
+				<sysproperty key="cyrilqc.config.file" value="${config.file.param}"/>
 			</junit>
 			<copy file="${test.results.dir}/TEST-${project}.txt" tofile="${test.normalized.dir}/TEST-${project}.txt">
 				<filterchain>
