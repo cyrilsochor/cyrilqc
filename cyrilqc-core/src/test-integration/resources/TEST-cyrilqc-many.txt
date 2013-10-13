@@ -33,8 +33,16 @@ test-last:
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :                                  test-main                                   :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+multitest:
+
+loader-test:
      [echo] TEST test-main
      [echo] Test test-main finished
+
+loader-test:
+
+loader-test:
 
 BUILD SUCCESSFUL
 Total time: X seconds
@@ -49,8 +57,16 @@ test-second:
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :                                  test-test                                   :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+multitest:
+
+loader-test:
+
+loader-test:
      [echo] TEST test-test
      [echo] Test test-test finished
+
+loader-test:
 
 BUILD SUCCESSFUL
 Total time: X seconds
@@ -58,6 +74,14 @@ Total time: X seconds
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :                            test-test-integration                             :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+multitest:
+
+loader-test:
+
+loader-test:
+
+loader-test:
      [echo] TEST test-test-integration
      [echo] Test test-test-integration finished
 

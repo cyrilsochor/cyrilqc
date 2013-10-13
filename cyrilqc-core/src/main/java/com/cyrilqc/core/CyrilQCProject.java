@@ -17,6 +17,7 @@ import com.cyrilqc.core.util.StringUtils;
 public class CyrilQCProject {
 
 	private static final String RUNTIME_HELPER_KEY = "cyrilqc.runtimeHelper";
+	private static final String TEST_NAME_KEY = "TEST_NAME";
 
 	private final CyrilQCEngine engine;
 	private final URL projectURL;
@@ -83,14 +84,14 @@ public class CyrilQCProject {
 		return tests;
 	}
 
-	private org.apache.tools.ant.Project getAntCleanProject() throws Exception {
+	protected org.apache.tools.ant.Project getAntCleanProject() throws Exception {
 		final Project antProject = prepareAntProject();
 		parseProject(antProject);
 		return antProject;
 	}
 
 	protected Project prepareAntProject() {
-		final Project antProject = new org.apache.tools.ant.Project();
+		final Project antProject = new SingleCheckAntProject();
 		final CyrilQCRuntimeHelper cyrilQCRuntimeHelper = new CyrilQCRuntimeHelper(this);
 
 		setMessageOutputLevel(engine.getConfiguration().getLoggingLevelDefault());
@@ -172,27 +173,24 @@ public class CyrilQCProject {
 		final CyrilQCRuntimeHelper runtimeHelper = getRuntimeHelper(antProject);
 		runtimeHelper.setMode(RuntimeMode.RUN_TEST);
 		runtimeHelper.setTestName(test.getName());
+		antProject.setUserProperty(TEST_NAME_KEY, test.getName());
 
 		try {
+			setMessageOutputLevel(engine.getConfiguration().getLoggingLevelTest());
 
 			try {
-				runTargets(antProject, beforeTestTargets, false, null);
-				if (test.isMulti()) {
-					setMessageOutputLevel(engine.getConfiguration().getLoggingLevelInfrastructure());
-				} else {
-					setMessageOutputLevel(engine.getConfiguration().getLoggingLevelTest());
-				}
-				antProject.executeTarget(test.getTargetName());
+				final List<String> testTargets = new LinkedList<String>();
+				testTargets.addAll(beforeTestTargets);
+				testTargets.add(test.getTargetName());
+				runTargets(antProject, testTargets, false, null);
 			} finally {
 				runTargets(antProject, afterTestTargets, true, null);
 			}
 
 			antProject.fireBuildFinished(null);
 		} catch (final BuildException e) {
-			antProject.fireBuildFinished(e);
 			throw e;
 		} catch (final Throwable e) {
-			antProject.fireBuildFinished(e);
 			throw new BuildException(e);
 		} finally {
 			restoreMessageOutputLevel();
@@ -217,9 +215,11 @@ public class CyrilQCProject {
 			setMessageOutputLevel(engine.getConfiguration().getLoggingLevelTest());
 			try {
 				if (recoverError) {
-					executeTargetsRecoverError(project, targets);
+					project.setKeepGoingMode(true);
+					executeTargets(project, targets);
+					project.setKeepGoingMode(false);
 				} else {
-					executeTargetsToFirstError(project, targets);
+					executeTargets(project, targets);
 				}
 			} finally {
 				restoreMessageOutputLevel();
@@ -227,7 +227,7 @@ public class CyrilQCProject {
 		}
 	}
 
-	private void executeTargetsToFirstError(Project project, List<String> targets) throws Throwable {
+	protected void executeTargets(Project project, List<String> targets) throws Throwable {
 		try {
 			final Vector<String> v = new Vector<String>();
 			v.addAll(targets);
@@ -235,18 +235,6 @@ public class CyrilQCProject {
 		} catch (Throwable e) {
 			project.fireBuildFinished(e);
 			throw e;
-		}
-	}
-
-	private void executeTargetsRecoverError(Project project, List<String> targets) throws Throwable {
-		for (String target : targets) {
-			try {
-				final Vector<String> v = new Vector<String>();
-				v.add(target);
-				project.executeTargets(v);
-			} catch (Throwable e) {
-				project.fireBuildFinished(e);
-			}
 		}
 	}
 

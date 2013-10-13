@@ -59,7 +59,7 @@
 
 	
 	
-	<target name="test-1">
+	<target name="test-1" if="false">
 		<echo>THIS IS TEST 1</echo>
 	</target>
 	

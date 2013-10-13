@@ -2,16 +2,13 @@
 	name="core-integration-test"
 	xmlns:cqc="antlib:com.cyrilqc.core"
 	xmlns:ac="antlib:net.sf.antcontrib"
+	basedir="."
 	>
 	<property name="cyrilqc.dir" value="${basedir}/../../.."/>
 	<property name="build.dir" value="${cyrilqc.dir}/build"/>
 	<property name="test.results.dir" value="${build.dir}/test-results"/>
 	<property name="test.normalized.dir" value="${build.dir}/test-results-normalized"/>
 
-	<target name="setUp">
-		<mkdir dir="${test.results.dir}"/>
-	</target>
-	
 	<target name="multitest">
 		<ac:foreach target="onetest" param="test.project.file" inheritrefs="true">
 			<path>
@@ -22,7 +19,7 @@
 		</ac:foreach>
 	</target>
 	
-	<target name="onetest" depends="setUp">
+	<target name="onetest">
 		<basename property="project" file="${test.project.file}" suffix=".xml"/>
 		<cqc:test name="${project}">
 			<property name="project" value="cyrilqc-simple"/>

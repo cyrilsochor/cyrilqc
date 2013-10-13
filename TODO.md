@@ -1,12 +1,9 @@
 # CyrilQC TODO
-- execute targets beforeModule and afterModule - mohou jich byt vic - takze zase prefix... potreba dodelat a pridat jeste testy
 - redirect ant error output to standard - not mixed in jenkins
-- display infrastructure error on console
 - display column of difference by assertFileEquals
-- failure in before target -> test have to return errror (not failure)
 - compare binay files
 - compare CSV file
-- each test must be excuted with clean project - no property set and no target executed
+- compare directiory tree
 - execute only specified test - command line argument and system propery for junit
 - configure another configuration class implementation
 - load configuration from property file and java system properties

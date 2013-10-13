@@ -37,6 +37,7 @@ BUILD FAILED
 /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-module-failure.xml:17: FAIL BEFORE MODULE 2
 
 Total time: X seconds
+Target 'after-module-2' failed with message 'FAIL AFTER MODULE 2'.
 
 BUILD FAILED
 /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-module-failure.xml:22: FAIL AFTER MODULE 2
@@ -46,6 +47,6 @@ Total time: X seconds
 
 Testcase: CyrilQC:test-integration-before-after took X.XX sec
 	Caused an ERROR
-FAIL BEFORE MODULE 2
-/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-module-failure.xml:17: FAIL BEFORE MODULE 2
+FAIL AFTER MODULE 2
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-module-failure.xml:22: FAIL AFTER MODULE 2
 

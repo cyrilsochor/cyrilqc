@@ -53,6 +53,7 @@
 		</cqc:test>
 		<cqc:test name="test-m2-river-nile">
 			<echo>THIS IS TEST m2-river-nile</echo>
+			<property name="river" value="Nile"/>
 			<echo>${animal} ${action} in ${river}</echo>
 		</cqc:test>
 		<cqc:test name="test-m3-try-set-properties">

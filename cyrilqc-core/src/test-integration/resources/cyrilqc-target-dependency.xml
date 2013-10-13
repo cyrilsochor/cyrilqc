@@ -1,0 +1,75 @@
+<project
+	xmlns="antlib:org.apache.tools.ant"
+	xmlns:cqc="antlib:com.cyrilqc.core"
+>
+	<property name="action" value="lives"/>
+	
+	<target name="common" depends="common-properties">
+		<echo>COMMON</echo>
+	</target>
+
+	<target name="common-properties">
+		<echo>COMMON PROPERTIES: old animal=${animal}, new animal=Crocodile</echo>
+		<property name="animal" value="Crocodile"/>
+	</target>
+	
+	<target name="before-scan" depends="common">
+		<echo>BEFORE SCAN</echo>
+	</target>
+	
+	<target name="after-scan" depends="common">
+		<echo>BEFORE SCAN</echo>
+	</target>
+	
+	<target name="before-module-1" depends="common">
+		<echo>BEFORE MODULE 1</echo>
+	</target>
+	
+	<target name="before-module-2" depends="common">
+		<echo>BEFORE MODULE 2</echo>
+	</target>
+	
+	<target name="before-test" depends="common">
+		<echo>BEFORE TEST</echo>
+	</target>
+	
+	<target name="test-1-no-river" depends="common">
+		<echo>THIS IS TEST ${TEST_NAME}</echo>
+		<echo>${animal} ${action} in ${river}</echo>
+	</target>
+	
+	<target name="test-2-river-nile" depends="common">
+		<echo>THIS IS TEST ${TEST_NAME}</echo>
+		<property name="river" value="Nile"/>
+		<echo>${animal} ${action} in ${river}</echo>
+	</target>
+	
+	<target name="multitest" depends="common">
+		<cqc:test name="test-m1-no-river">
+			<echo>THIS IS TEST ${TEST_NAME}</echo>
+			<echo>${animal} ${action} in ${river}</echo>
+		</cqc:test>
+		<cqc:test name="test-m2-river-nile">
+			<echo>THIS IS TEST ${TEST_NAME}</echo>
+			<property name="river" value="Nile"/>
+			<echo>${animal} ${action} in ${river}</echo>
+		</cqc:test>
+	</target>
+	
+	<target name="after-test-1" depends="common">
+		<echo>AFTER TEST 1: ${TEST_NAME}</echo>
+	</target>
+
+	<target name="after-test-2" depends="common">
+		<echo>AFTER TEST 2: ${TEST_NAME}</echo>
+	</target>
+
+	<target name="after-module-1" depends="common">
+		<echo>AFTER MODULE 1</echo>
+	</target>
+	
+	<target name="after-module-2" depends="common">
+		<echo>AFTER MODULE 2</echo>
+	</target>
+	
+</project>

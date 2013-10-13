@@ -37,7 +37,7 @@
 		
 		<cqc:test name="${testName}">
 			<echo level="warning">TEST ${testName}</echo>
-			<echo level="warning">Test ${testName} finished</echo>
+			<echo level="warning">Test ${TEST_NAME} finished</echo>
 		</cqc:test>
 	</target>
 	

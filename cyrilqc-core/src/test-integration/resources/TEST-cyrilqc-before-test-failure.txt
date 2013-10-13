@@ -1,5 +1,5 @@
 Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: X.XX sec
+Tests run: 1, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: X.XX sec
 ------------- Standard Output ---------------
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :                                   CyrilQC                                    :
@@ -59,16 +59,13 @@ BUILD FAILED
 /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-test-failure.xml:44: FAIL BEFORE MODULE 2
 
 Total time: X seconds
+Target 'after-test-2' failed with message 'FAIL AFTER TEST 2'.
 
 BUILD FAILED
 /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-test-failure.xml:49: FAIL AFTER TEST 2
 
 Total time: X seconds
-
-BUILD FAILED
-/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-test-failure.xml:44: FAIL BEFORE MODULE 2
-
-Total time: X seconds
+Target 'after-module-2' failed with message 'FAIL AFTER MODULE 2'.
 
 BUILD FAILED
 /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-test-failure.xml:21: FAIL AFTER MODULE 2
@@ -78,6 +75,11 @@ Total time: X seconds
 
 Testcase: test-1 took X.XX sec
 	Caused an ERROR
-FAIL BEFORE MODULE 2
-/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-test-failure.xml:44: FAIL BEFORE MODULE 2
+FAIL AFTER TEST 2
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-test-failure.xml:49: FAIL AFTER TEST 2
+
+Testcase: CyrilQC:test-integration-before-after took X.XX sec
+	Caused an ERROR
+FAIL AFTER MODULE 2
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-before-test-failure.xml:21: FAIL AFTER MODULE 2
 
