@@ -1,6 +1,5 @@
 package com.cyrilqc.core.task;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.BufferedReader;
@@ -8,6 +7,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.apache.tools.ant.Project;
+import org.junit.ComparisonFailure;
+
+import com.cyrilqc.core.util.StringUtils;
 
 public class TextStreamComparator extends StreamComparatorBase {
 
@@ -48,12 +50,14 @@ public class TextStreamComparator extends StreamComparatorBase {
 							+ getExpectedLocation()
 							+ " has more");
 				} else {
-					assertEquals("Files " + getExpectedLocation() + " and " + getActualLocation()
-							+ " differ at line " + line,
-							expectedLine, actualLine);
+					int firstDifference = StringUtils.getFirstDifference(expectedLine, actualLine);
+					if (-1 != firstDifference) {
+						throw new ComparisonFailure("Files " + getExpectedLocation() + " and " + getActualLocation()
+								+ " differ at line " + line + " character " + (firstDifference + 1), expectedLine,
+								actualLine);
+					}
 				}
 			}
 		}
 	}
-
 }

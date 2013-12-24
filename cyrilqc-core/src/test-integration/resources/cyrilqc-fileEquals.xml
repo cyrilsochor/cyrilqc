@@ -7,26 +7,38 @@
 >
 	<taskdef uri="antlib:com.cyrilqc.core"/>
 	
-	<target name="testSame">
+	<target name="test-same">
 		<cqc:assertfileequals expected="data/mountains.txt" actual="data/mountains.txt"/>
 	</target>
 
-	<target name="testDiffer">
+	<target name="test-differ">
 		<cqc:assertfileequals expected="data/mountains.txt" actual="data/mountains-8000.txt"/>
 	</target>
 	
-	<target name="testExpectedNonExisting">
+	<target name="test-mountains-8000-names">
+		<cqc:assertfileequals expected="data/mountains-8000-names.txt" actual="data/mountains-8000.txt"/>
+	</target>
+
+	<target name="test-mountains-8000-names-short">
+		<cqc:assertfileequals expected="data/mountains-8000-names.txt" actual="data/mountains-8000-names-short.txt"/>
+	</target>
+
+	<target name="test-expected-non-existing">
 		<cqc:assertfileequals expected="data/nnn" actual="data/mountains.txt"/>
 	</target>
 	
-	<target name="testActualNonExisting">
+	<target name="test-actual-non-existing">
 		<cqc:assertfileequals expected="data/mountains.txt" actual="data/mmm"/>
 	</target>
 	
-	<target name="testBothNonExisting">
+	<target name="test-both-non-existing">
 		<cqc:assertfileequals expected="data/nnn" actual="data/mmm"/>
 	</target>
 
+	<target name="test-short.csv">
+		<cqc:assertfileequals expected="data/short-1.csv" actual="data/short-2.csv"/>
+	</target>
+	
 	<!--
 	<target name="testSameS">
 		<cqc:assertequals>

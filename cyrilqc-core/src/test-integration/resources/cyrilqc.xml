@@ -50,14 +50,14 @@
 				<filterchain>
 					<tokenfilter>
 						<replaceregex pattern="Time elapsed: (.*) sec" replace="Time elapsed: X.XX sec" flags="g"/>
-			    		<replaceregex pattern="took (.*) sec" replace="took X.XX sec" flags="g"/>
-			    		<replaceregex pattern="Loading project (.*)/" replace="Loading project XXX/" flags="g"/>
-			    		<replaceregex pattern="^Total time: (.*)" replace="Total time: X seconds" flags="g"/>
-			    		<replaceregex pattern="([^ ]*)(/cyrilqc-core/src/test-integration/resources)" replace="/XXX\2" flags="g"/>
-			    		<replaceregex pattern="^(Caused by: org.xml.sax.SAXParseException)(.*)[:;]([^:;]*)$" replace="\1:\3" flags="g"/> <!-- required for cyrilqc-invalid.xml - exception differ in java-5 and java-7 -->
+						<replaceregex pattern="took (.*) sec" replace="took X.XX sec" flags="g"/>
+						<replaceregex pattern="Loading project (.*)/" replace="Loading project XXX/" flags="g"/>
+						<replaceregex pattern="^Total time: (.*)" replace="Total time: X seconds" flags="g"/>
+						<replaceregex pattern="([^ ]*)(/cyrilqc-core/src/test-integration/resources)" replace="/XXX\2" flags="g"/>
+						<replaceregex pattern="^(Caused by: org.xml.sax.SAXParseException)(.*)[:;]([^:;]*)$" replace="\1:\3" flags="g"/> <!-- required for cyrilqc-invalid.xml - exception differ in java-5 and java-7 -->
 					</tokenfilter>
 					<linecontainsregexp negate="true">
-					  <regexp pattern="\w*at (.*)\(.*\).*"/>
+						<regexp pattern="^\t*at (.*)\(.*\).*"/>
 					</linecontainsregexp>
 				</filterchain>
 			</copy>

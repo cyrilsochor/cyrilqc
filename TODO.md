@@ -1,5 +1,4 @@
 # CyrilQC TODO
-- display column of difference by assertFileEquals
 - compare binay files
 - compare CSV file
 - compare directiory tree

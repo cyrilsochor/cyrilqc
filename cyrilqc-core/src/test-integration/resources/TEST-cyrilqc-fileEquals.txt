@@ -1,54 +1,81 @@
 Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
-Tests run: 5, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: X.XX sec
+Tests run: 8, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: X.XX sec
 ------------- Standard Output ---------------
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :                                   CyrilQC                                    :
 :  Loading project XXX/cyrilqc-fileEquals.xml
 :  Project name test-integration-many                                          :
-:  Found testActualNonExisting                                                 :
-:  Found testBothNonExisting                                                   :
-:  Found testDiffer                                                            :
-:  Found testExpectedNonExisting                                               :
-:  Found testSame                                                              :
+:  Found test-actual-non-existing                                              :
+:  Found test-both-non-existing                                                :
+:  Found test-differ                                                           :
+:  Found test-expected-non-existing                                            :
+:  Found test-mountains-8000-names                                             :
+:  Found test-mountains-8000-names-short                                       :
+:  Found test-same                                                             :
+:  Found test-short.csv                                                        :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:                            testActualNonExisting                             :
+:                           test-actual-non-existing                           :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-testActualNonExisting:
+test-actual-non-existing:
 [cqc:assertfileequals] Comparing files, expected data/mountains.txt and actual data/mmm
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:                             testBothNonExisting                              :
+:                            test-both-non-existing                            :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-testBothNonExisting:
+test-both-non-existing:
 [cqc:assertfileequals] Comparing files, expected data/nnn and actual data/mmm
 
 BUILD SUCCESSFUL
 Total time: X seconds
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:                                  testDiffer                                  :
+:                                 test-differ                                  :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-testDiffer:
+test-differ:
 [cqc:assertfileequals] Comparing files, expected data/mountains.txt and actual data/mountains-8000.txt
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:                           testExpectedNonExisting                            :
+:                          test-expected-non-existing                          :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-testExpectedNonExisting:
+test-expected-non-existing:
 [cqc:assertfileequals] Comparing files, expected data/nnn and actual data/mountains.txt
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:                                   testSame                                   :
+:                          test-mountains-8000-names                           :
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-testSame:
+test-mountains-8000-names:
+[cqc:assertfileequals] Comparing files, expected data/mountains-8000-names.txt and actual data/mountains-8000.txt
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                       test-mountains-8000-names-short                        :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-mountains-8000-names-short:
+[cqc:assertfileequals] Comparing files, expected data/mountains-8000-names.txt and actual data/mountains-8000-names-short.txt
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                  test-same                                   :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-same:
 [cqc:assertfileequals] Comparing files, expected data/mountains.txt and actual data/mountains.txt
+
+BUILD SUCCESSFUL
+Total time: X seconds
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                test-short.csv                                :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-short.csv:
+[cqc:assertfileequals] Comparing files, expected data/short-1.csv and actual data/short-2.csv
 
 BUILD SUCCESSFUL
 Total time: X seconds
@@ -56,32 +83,56 @@ Total time: X seconds
 ------------- Standard Error -----------------
 
 BUILD FAILED
-/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:23: Actual file /XXX/cyrilqc-core/src/test-integration/resources/data/mmm not found
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:31: Actual file /XXX/cyrilqc-core/src/test-integration/resources/data/mmm not found
 
 Total time: X seconds
 
 BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:15: Files data/mountains.txt and data/mountains-8000.txt differ at line 1 character 1 expected:<[McKinley (Denali)	Alaska 	Alaska 	20320	6194]> but was:<[Kanchenjunga 	Himalayas 	India/Nepal	28169	8586]>
 
 Total time: X seconds
 
 BUILD FAILED
-/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:19: Expected file /XXX/cyrilqc-core/src/test-integration/resources/data/nnn not found
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:27: Expected file /XXX/cyrilqc-core/src/test-integration/resources/data/nnn not found
+
+Total time: X seconds
+
+BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:19: Files data/mountains-8000-names.txt and data/mountains-8000.txt differ at line 1 character 13 expected:<Kanchenjunga[]> but was:<Kanchenjunga[ 	Himalayas 	India/Nepal	28169	8586]>
+
+Total time: X seconds
+
+BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:23: Files data/mountains-8000-names.txt and data/mountains-8000-names-short.txt differ at line 4 character 8 expected:<Manaslu[ I]> but was:<Manaslu[]>
 
 Total time: X seconds
 ------------- ---------------- ---------------
 
-Testcase: testActualNonExisting took X.XX sec
+Testcase: test-actual-non-existing took X.XX sec
 	FAILED
-/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:23: Actual file /XXX/cyrilqc-core/src/test-integration/resources/data/mmm not found
-junit.framework.AssertionFailedError: /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:23: Actual file /XXX/cyrilqc-core/src/test-integration/resources/data/mmm not found
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:31: Actual file /XXX/cyrilqc-core/src/test-integration/resources/data/mmm not found
+junit.framework.AssertionFailedError: /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:31: Actual file /XXX/cyrilqc-core/src/test-integration/resources/data/mmm not found
 
-Testcase: testBothNonExisting took X.XX sec
-Testcase: testDiffer took X.XX sec
+Testcase: test-both-non-existing took X.XX sec
+Testcase: test-differ took X.XX sec
 	FAILED
+Files data/mountains.txt and data/mountains-8000.txt differ at line 1 character 1 expected:<[McKinley (Denali)	Alaska 	Alaska 	20320	6194]> but was:<[Kanchenjunga 	Himalayas 	India/Nepal	28169	8586]>
+junit.framework.AssertionFailedError: Files data/mountains.txt and data/mountains-8000.txt differ at line 1 character 1 expected:<[McKinley (Denali)	Alaska 	Alaska 	20320	6194]> but was:<[Kanchenjunga 	Himalayas 	India/Nepal	28169	8586]>
 
-Testcase: testExpectedNonExisting took X.XX sec
+Testcase: test-expected-non-existing took X.XX sec
 	FAILED
-/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:19: Expected file /XXX/cyrilqc-core/src/test-integration/resources/data/nnn not found
-junit.framework.AssertionFailedError: /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:19: Expected file /XXX/cyrilqc-core/src/test-integration/resources/data/nnn not found
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:27: Expected file /XXX/cyrilqc-core/src/test-integration/resources/data/nnn not found
+junit.framework.AssertionFailedError: /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-fileEquals.xml:27: Expected file /XXX/cyrilqc-core/src/test-integration/resources/data/nnn not found
 
-Testcase: testSame took X.XX sec
+Testcase: test-mountains-8000-names took X.XX sec
+	FAILED
+Files data/mountains-8000-names.txt and data/mountains-8000.txt differ at line 1 character 13 expected:<Kanchenjunga[]> but was:<Kanchenjunga[ 	Himalayas 	India/Nepal	28169	8586]>
+junit.framework.AssertionFailedError: Files data/mountains-8000-names.txt and data/mountains-8000.txt differ at line 1 character 13 expected:<Kanchenjunga[]> but was:<Kanchenjunga[ 	Himalayas 	India/Nepal	28169	8586]>
+
+Testcase: test-mountains-8000-names-short took X.XX sec
+	FAILED
+Files data/mountains-8000-names.txt and data/mountains-8000-names-short.txt differ at line 4 character 8 expected:<Manaslu[ I]> but was:<Manaslu[]>
+junit.framework.AssertionFailedError: Files data/mountains-8000-names.txt and data/mountains-8000-names-short.txt differ at line 4 character 8 expected:<Manaslu[ I]> but was:<Manaslu[]>
+
+Testcase: test-same took X.XX sec
+Testcase: test-short.csv took X.XX sec

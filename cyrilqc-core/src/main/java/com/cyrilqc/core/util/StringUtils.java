@@ -51,4 +51,31 @@ public class StringUtils {
 		return s != null && s.length() != 0;
 	}
 
+	/**
+	 * Return first difference of two strings.
+	 * 
+	 * @param expected
+	 *            first input, must not be null
+	 * @param actual
+	 *            second input, must not be null
+	 * @return -1 if inputs equal, otherwise return index of first different
+	 *         character
+	 */
+	public static int getFirstDifference(final CharSequence expected, final CharSequence actual) {
+		int minLenght = Math.min(expected.length(), actual.length());
+
+		int i;
+		for (i = 0; i < minLenght; i++) {
+			final char e = expected.charAt(i);
+			final char a = actual.charAt(i);
+			if (a != e) {
+				return i;
+			}
+		}
+		if (expected.length() != actual.length()) {
+			return i;
+		}
+
+		return -1;
+	}
 }
