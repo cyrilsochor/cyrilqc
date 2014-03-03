@@ -25,7 +25,8 @@ public class HttpCondition extends ProjectComponent implements Condition {
 	private String outputProperty;
 
 	/**
-	 * @return true if the HTTP request succeeds
+	 * @return true if the HTTP request is successfull - return code is grater
+	 *         then errorsBeginAt (by default 400)
 	 * @exception BuildException
 	 *                if an error occurs
 	 */

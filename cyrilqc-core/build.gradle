@@ -10,18 +10,16 @@ applicationName = "cyrilqc" // used by application plugin
 mainClassName = "com.cyrilqc.runner.CyrilQC"
 
 dependencies {
-    compile group: 'junit', name: 'junit'
-	compile group: 'org.apache.ant', name:'ant'
-	runtime group: 'org.apache.ant', name:'ant-junit'  
-	runtime group: 'org.apache.ant', name:'ant-junit4'
-	runtime group: 'org.apache.ant', name:'ant-jsch'
-	runtime group: 'org.apache.ant', name:'ant-apache-log4j'
-	runtime group: 'org.apache.ant', name:'ant-apache-bsf'
-	runtime group: 'org.apache.ant', name:'ant-apache-bcel'
-	runtime group: 'org.apache.ant', name:'ant-apache-xalan2'
-	runtime group: 'ant-contrib', name:'ant-contrib', version:'1.0b3', transitive: false
-//	testRuntime group:'ant4eclipse', name:'ant4eclipse', version:'0.4.2' //version:'0.5.0.rc1'  
-//	compile group: 'org.slf4j', name:'slf4j-log4j12', version:'1.7.2'
+    compile libs."junit:junit"
+	compile libs."org.apache.ant:ant"
+	runtime libs."org.apache.ant:ant-junit"  
+	runtime libs."org.apache.ant:ant-junit4"
+	runtime libs."org.apache.ant:ant-jsch"
+	runtime libs."org.apache.ant:ant-apache-log4j"
+	runtime libs."org.apache.ant:ant-apache-bsf"
+	runtime libs."org.apache.ant:ant-apache-bcel"
+	runtime libs."org.apache.ant:ant-apache-xalan2"
+	runtime libs."ant-contrib:ant-contrib"
 }
 
 
@@ -53,7 +51,7 @@ task dist( dependsOn: distZip) {
 
 task all (dependsOn: [assemble, check, install, dist]) {
 }
- 
+
 /* obsolete
 
 jar {

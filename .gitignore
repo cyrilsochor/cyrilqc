@@ -4,3 +4,4 @@ build
 .project
 bin
 .gradle
+.settings/org.eclipse.ltk.core.refactoring.prefs

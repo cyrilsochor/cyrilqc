@@ -4,31 +4,36 @@ allprojects {
 	version = '0.1.0'
 
 	task wrapper(type: Wrapper) {
-	    gradleVersion = '1.7'
+		gradleVersion = '1.11'
 	}
 }
 
+ext.libs = [
+    "junit:junit": "junit:junit:4.11",
+	"org.apache.ant:ant": "org.apache.ant:ant:1.9.2",
+	"org.apache.ant:ant-junit": "org.apache.ant:ant-junit:1.9.2",  
+	"org.apache.ant:ant-junit4": "org.apache.ant:ant-junit4:1.9.2",
+	"org.apache.ant:ant-jsch": "org.apache.ant:ant-jsch:1.9.2",
+	"org.apache.ant:ant-apache-log4j": "org.apache.ant:ant-apache-log4j:1.9.2",
+	"org.apache.ant:ant-apache-bsf": "org.apache.ant:ant-apache-bsf:1.9.2",
+	"org.apache.ant:ant-apache-bcel": "org.apache.ant:ant-apache-bcel:1.9.2",
+	"org.apache.ant:ant-apache-xalan2": "org.apache.ant:ant-apache-xalan2:1.9.2",
+	"ant-contrib:ant-contrib": dependencies.create("ant-contrib:ant-contrib:1.0b3"){
+		transitive false
+	},
+]
+
 subprojects {
 	repositories {
-	    mavenCentral()
-	    mavenLocal()
+		mavenLocal()
+		mavenCentral()
 	}
 	configurations {
 		testCompile
 	}
-	configurations.all {
-    	resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-        	if (details.requested.group == 'org.apache.ant') {
-            	details.useVersion '1.9.2'
-        	}
-        	if (details.requested.group == 'junit') {
-            	details.useVersion '4.11'
-        	}
-		}        	
-	}    
-    dependencies {
-        testCompile "junit:junit"
-    }
+	dependencies {
+		testCompile libs."junit:junit"
+	}
 }
 
 subprojects {
@@ -39,3 +44,4 @@ subprojects {
 		}
 	}
 }
+

@@ -14,21 +14,24 @@
 			<path>
 				<fileset dir="">
 					<include name="cyrilqc-*.xml"/>
+					<include name="cyrilqc-*._xml"/>
 				</fileset>
 			</path>
 		</ac:foreach>
 	</target>
 	
 	<target name="onetest">
-		<basename property="project" file="${test.project.file}" suffix=".xml"/>
+		<basename property="project.file.name" file="${test.project.file}"/>
+		<ac:propertyregex property="project" input="${project.file.name}" regexp="(.*)\..*" select="\1"/>
 		<cqc:test name="${project}">
-			<property name="project.file.param" value="${project}.xml" />
+			<property name="project.file.param" value="${project.file.name}" />
 
 			<property name="project.config.file" value="${project}.properties"/>
 			<available property="config.file.param" file="${project.config.file}" value="${project.config.file}"/>
 			<property name="config.file.param" value=""/>
 			
 			<echo message="Running test project.file=${project.file.param} config.file=${config.file.param}"/>
+			<mkdir dir="${test.results.dir}"/>
 			<junit
 					fork="true"
 					printsummary="true" 
