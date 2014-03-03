@@ -1,7 +1,7 @@
 allprojects {
 	apply plugin: 'eclipse'
 	group = 'com.cyrilqc'
-	version = '0.1.0'
+	version = '1.0.0-SNAPSHOT'
 
 	task wrapper(type: Wrapper) {
 		gradleVersion = '1.11'
