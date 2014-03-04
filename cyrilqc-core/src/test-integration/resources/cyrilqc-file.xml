@@ -1,0 +1,50 @@
+<project 
+	name="test-file"
+	xmlns="antlib:org.apache.tools.ant"
+	xmlns:c="antlib:it.haefelinger.flaka"
+	xmlns:ac="antlib:net.sf.antcontrib"
+	xmlns:cqc="antlib:com.cyrilqc.core"
+>
+	<taskdef uri="antlib:com.cyrilqc.core"/>
+	
+	<target name="test-file-limits">
+		<cqc:assertfile actual="data/mountains.txt" expectedSizeMin="1k" expectedSizeMax="2m" />
+	</target>
+	
+	<target name="test-file-size">
+		<cqc:assertfile actual="data/mountains.txt" expectedSize="4941"/>
+	</target>
+
+	<target name="test-file-size-b">
+		<cqc:assertfile actual="data/mountains.txt" expectedSize="4941b"/>
+	</target>
+
+	<target name="test-file-size-min-kib">
+		<cqc:assertfile actual="data/mountains.txt" expectedSizeMin="	4 kib "/>
+	</target>
+
+	<target name="test-file-size-min-b-invalid">
+		<cqc:assertfile actual="data/mountains.txt" expectedSize="494b"/>
+	</target>
+
+	<target name="test-file-size-min-invalid">
+		<cqc:assertfile actual="data/mountains.txt" expectedSizeMin="1m"/>
+	</target>
+
+	<target name="test-file-size-max-invalid">
+		<cqc:assertfile actual="data/mountains.txt" expectedSizeMax="1k"/>
+	</target>
+
+	<target name="test-file-size-invalid">
+		<cqc:assertfile actual="data/mountains.txt" expectedSizeMax="1o"/>
+	</target>
+	
+	<target name="test-file-no">
+		<cqc:assertfile actual="data/mountains2.txt" expectedSizeMax="1g"/>
+	</target>
+	
+	<target name="test-file-short-1">
+		<cqc:assertfile actual="data/short-1.csv" expectedSize=" 28  bytes"/>
+	</target>
+
+</project>

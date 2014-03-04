@@ -1,0 +1,162 @@
+Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
+Tests run: 10, Failures: 4, Errors: 1, Skipped: 0, Time elapsed: X.XX sec
+------------- Standard Output ---------------
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                   CyrilQC                                    :
+:  Loading project XXX/cyrilqc-file.xml
+:  Project name test-file                                                      :
+:  Found test-file-limits                                                      :
+:  Found test-file-no                                                          :
+:  Found test-file-short-1                                                     :
+:  Found test-file-size                                                        :
+:  Found test-file-size-b                                                      :
+:  Found test-file-size-invalid                                                :
+:  Found test-file-size-max-invalid                                            :
+:  Found test-file-size-min-b-invalid                                          :
+:  Found test-file-size-min-invalid                                            :
+:  Found test-file-size-min-kib                                                :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                               test-file-limits                               :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-file-limits:
+[cqc:assertfile] Checking file data/mountains.txt
+
+BUILD SUCCESSFUL
+Total time: X seconds
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                 test-file-no                                 :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-file-no:
+[cqc:assertfile] Checking file data/mountains2.txt
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                              test-file-short-1                               :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-file-short-1:
+[cqc:assertfile] Checking file data/short-1.csv
+
+BUILD SUCCESSFUL
+Total time: X seconds
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                test-file-size                                :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-file-size:
+[cqc:assertfile] Checking file data/mountains.txt
+
+BUILD SUCCESSFUL
+Total time: X seconds
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                               test-file-size-b                               :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-file-size-b:
+[cqc:assertfile] Checking file data/mountains.txt
+
+BUILD SUCCESSFUL
+Total time: X seconds
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                            test-file-size-invalid                            :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-file-size-invalid:
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                          test-file-size-max-invalid                          :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-file-size-max-invalid:
+[cqc:assertfile] Checking file data/mountains.txt
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                         test-file-size-min-b-invalid                         :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-file-size-min-b-invalid:
+[cqc:assertfile] Checking file data/mountains.txt
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                          test-file-size-min-invalid                          :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-file-size-min-invalid:
+[cqc:assertfile] Checking file data/mountains.txt
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                            test-file-size-min-kib                            :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test-file-size-min-kib:
+[cqc:assertfile] Checking file data/mountains.txt
+
+BUILD SUCCESSFUL
+Total time: X seconds
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+
+BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-file.xml:43: File /XXX/cyrilqc-core/src/test-integration/resources/data/mountains2.txt not found
+
+Total time: X seconds
+
+BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-file.xml:39: java.lang.IllegalArgumentException: Unknown size suffix 'o', valid values are [, b, bytes, e, eb, eib, exabyte, exbibyte, g, gb, gib, gibibyte, gigabyte, k, kb, kib, kibibyte, kilobyte, m, mb, mebibyte, megabyte, mib, p, pb, pebibyte, petabyte, pib, t, tebibyte, terabyte, tib, tr, y, yb, yib, yobibyte, yottabyte, z, zb, zebibyte, zettabyte, zib]
+
+Total time: X seconds
+
+BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-file.xml:35: File /XXX/cyrilqc-core/src/test-integration/resources/data/mountains.txt has invalid size, expected maximum 1024 bytes, actual 4941 bytes
+
+Total time: X seconds
+
+BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-file.xml:27: File /XXX/cyrilqc-core/src/test-integration/resources/data/mountains.txt has invalid size, expected 494 bytes, actual 4941 bytes
+
+Total time: X seconds
+
+BUILD FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-file.xml:31: File /XXX/cyrilqc-core/src/test-integration/resources/data/mountains.txt has invalid size, expected at least 1048576 bytes, actual 4941 bytes
+
+Total time: X seconds
+------------- ---------------- ---------------
+
+Testcase: test-file-limits took X.XX sec
+Testcase: test-file-no took X.XX sec
+	FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-file.xml:43: File /XXX/cyrilqc-core/src/test-integration/resources/data/mountains2.txt not found
+junit.framework.AssertionFailedError: /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-file.xml:43: File /XXX/cyrilqc-core/src/test-integration/resources/data/mountains2.txt not found
+
+Testcase: test-file-short-1 took X.XX sec
+Testcase: test-file-size took X.XX sec
+Testcase: test-file-size-b took X.XX sec
+Testcase: test-file-size-invalid took X.XX sec
+	Caused an ERROR
+java.lang.IllegalArgumentException: Unknown size suffix 'o', valid values are [, b, bytes, e, eb, eib, exabyte, exbibyte, g, gb, gib, gibibyte, gigabyte, k, kb, kib, kibibyte, kilobyte, m, mb, mebibyte, megabyte, mib, p, pb, pebibyte, petabyte, pib, t, tebibyte, terabyte, tib, tr, y, yb, yib, yobibyte, yottabyte, z, zb, zebibyte, zettabyte, zib]
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-file.xml:39: java.lang.IllegalArgumentException: Unknown size suffix 'o', valid values are [, b, bytes, e, eb, eib, exabyte, exbibyte, g, gb, gib, gibibyte, gigabyte, k, kb, kib, kibibyte, kilobyte, m, mb, mebibyte, megabyte, mib, p, pb, pebibyte, petabyte, pib, t, tebibyte, terabyte, tib, tr, y, yb, yib, yobibyte, yottabyte, z, zb, zebibyte, zettabyte, zib]
+Caused by: java.lang.IllegalArgumentException: Unknown size suffix 'o', valid values are [, b, bytes, e, eb, eib, exabyte, exbibyte, g, gb, gib, gibibyte, gigabyte, k, kb, kib, kibibyte, kilobyte, m, mb, mebibyte, megabyte, mib, p, pb, pebibyte, petabyte, pib, t, tebibyte, terabyte, tib, tr, y, yb, yib, yobibyte, yottabyte, z, zb, zebibyte, zettabyte, zib]
+
+Testcase: test-file-size-max-invalid took X.XX sec
+	FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-file.xml:35: File /XXX/cyrilqc-core/src/test-integration/resources/data/mountains.txt has invalid size, expected maximum 1024 bytes, actual 4941 bytes
+junit.framework.AssertionFailedError: /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-file.xml:35: File /XXX/cyrilqc-core/src/test-integration/resources/data/mountains.txt has invalid size, expected maximum 1024 bytes, actual 4941 bytes
+
+Testcase: test-file-size-min-b-invalid took X.XX sec
+	FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-file.xml:27: File /XXX/cyrilqc-core/src/test-integration/resources/data/mountains.txt has invalid size, expected 494 bytes, actual 4941 bytes
+junit.framework.AssertionFailedError: /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-file.xml:27: File /XXX/cyrilqc-core/src/test-integration/resources/data/mountains.txt has invalid size, expected 494 bytes, actual 4941 bytes
+
+Testcase: test-file-size-min-invalid took X.XX sec
+	FAILED
+/XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-file.xml:31: File /XXX/cyrilqc-core/src/test-integration/resources/data/mountains.txt has invalid size, expected at least 1048576 bytes, actual 4941 bytes
+junit.framework.AssertionFailedError: /XXX/cyrilqc-core/src/test-integration/resources/cyrilqc-file.xml:31: File /XXX/cyrilqc-core/src/test-integration/resources/data/mountains.txt has invalid size, expected at least 1048576 bytes, actual 4941 bytes
+
+Testcase: test-file-size-min-kib took X.XX sec
