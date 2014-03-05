@@ -1,0 +1,23 @@
+<project 
+	name="test-integration-import"
+	xmlns="antlib:org.apache.tools.ant"
+	xmlns:c="antlib:it.haefelinger.flaka"
+	xmlns:ac="antlib:net.sf.antcontrib"
+	xmlns:cqc="antlib:com.cyrilqc.core"
+>
+	<taskdef uri="antlib:com.cyrilqc.core"/>
+	
+	<import file="cyrilqcpart-import.xml"/>
+	
+	<target name="before-module-out">
+		<echo>THIS IS before-module-out</echo>
+		<echo>property.in=${property.in}</echo>
+	</target>
+	
+	<target name="test-out">
+		<echo>THIS IS SIMPLE ${TEST_NAME}</echo>
+		<echo>property.in=${property.in}</echo>
+		<echo>property.test.in=${property.test.in}</echo>
+	</target>
+	
+</project>

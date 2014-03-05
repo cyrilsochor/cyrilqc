@@ -1,0 +1,61 @@
+Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: X.XX sec
+------------- Standard Output ---------------
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                   CyrilQC                                    :
+:  Loading project XXX/cyrilqc-import.xml
+:  Project name test-integration-import                                        :
+:  Found test-in                                                               :
+:  Found test-out                                                              :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                before-module                                 :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+before-module-in:
+     [echo] THIS IS before-module-in
+     [echo] property.in=III
+
+before-module-out:
+     [echo] THIS IS before-module-out
+     [echo] property.in=III
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                   test-in                                    :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+before-test-in:
+
+test-in:
+     [echo] THIS IS SIMPLE test-in
+     [echo] property.in=III
+     [echo] property.test.in=B_test-in
+
+BUILD SUCCESSFUL
+Total time: X seconds
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                   test-out                                   :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+before-test-in:
+
+test-out:
+     [echo] THIS IS SIMPLE test-out
+     [echo] property.in=III
+     [echo] property.test.in=B_test-out
+
+BUILD SUCCESSFUL
+Total time: X seconds
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                 after-module                                 :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+after-module-in:
+     [echo] THIS IS after-module-in
+------------- ---------------- ---------------
+
+Testcase: test-in took X.XX sec
+Testcase: test-out took X.XX sec

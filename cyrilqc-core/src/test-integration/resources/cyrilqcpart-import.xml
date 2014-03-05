@@ -1,0 +1,24 @@
+<project name="imported">
+	
+	<property name="property.in" value="III"/>
+	
+	<target name="before-test-in">
+		<property name="property.test.in" value="B_${TEST_NAME}"/>
+	</target>
+
+	<target name="before-module-in">
+		<echo>THIS IS before-module-in</echo>
+		<echo>property.in=${property.in}</echo>
+	</target>
+
+	<target name="test-in">
+		<echo>THIS IS SIMPLE ${TEST_NAME}</echo>
+		<echo>property.in=${property.in}</echo>
+		<echo>property.test.in=${property.test.in}</echo>
+	</target>
+
+	<target name="after-module-in">
+		<echo>THIS IS after-module-in</echo>
+	</target>
+
+</project>

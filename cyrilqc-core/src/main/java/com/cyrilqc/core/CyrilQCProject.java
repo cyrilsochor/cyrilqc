@@ -32,7 +32,6 @@ public class CyrilQCProject {
 
 	private File projectFile;
 	private DefaultLogger consoleLogger;
-	private ProjectHelper antHelper;
 	private final LinkedList<Integer> messageOutputLevels = new LinkedList<Integer>();
 
 	public CyrilQCProject(CyrilQCEngine engine, URL projectURL) throws Exception {
@@ -47,8 +46,6 @@ public class CyrilQCProject {
 		consoleLogger = new DefaultLogger();
 		consoleLogger.setOutputPrintStream(engine.getConfiguration().getOutputPrintStream());
 		consoleLogger.setErrorPrintStream(engine.getConfiguration().getErrorPrintStream());
-
-		antHelper = ProjectHelper.getProjectHelper();
 
 		this.defaultAntProject = prepareAntProject();
 
@@ -100,12 +97,13 @@ public class CyrilQCProject {
 		antProject.setUserProperty("ant.file", projectFile.getAbsolutePath());
 		antProject.setProperty("name", "CyrilQC");
 		antProject.init();
-		antProject.addReference("ant.projectHelper", antHelper);
+		antProject.addReference("ant.projectHelper", ProjectHelper.getProjectHelper());
 		antProject.addReference(RUNTIME_HELPER_KEY, cyrilQCRuntimeHelper);
 		return antProject;
 	}
 
 	protected void parseProject(final Project antProject) {
+		final ProjectHelper antHelper = antProject.getReference("ant.projectHelper");
 		antHelper.parse(antProject, projectFile);
 	}
 
