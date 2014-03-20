@@ -3,6 +3,8 @@
 
 <typedef name="http" classname="com.cyrilqc.http.HttpCondition"/>
 
+<typedef name="waitget" classname="com.cyrilqc.http.WaitGet"/>
+
 </antlib>
 
 

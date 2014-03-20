@@ -1,1 +1,1 @@
-include 'cyrilqc-core', 'cyrilqc-http'
+include 'cyrilqc-core', 'cyrilqc-util', 'cyrilqc-http'

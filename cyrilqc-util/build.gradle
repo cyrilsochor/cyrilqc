@@ -1,0 +1,10 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+description = "Cyril Quality Center - util"
+
+dependencies {
+	compile libs."org.apache.ant:ant"
+}
+
+

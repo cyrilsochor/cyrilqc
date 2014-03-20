@@ -4,9 +4,10 @@ apply plugin: 'maven'
 description = "Cyril Quality Center - http"
 
 dependencies {
-	compile group: 'org.apache.ant', name:'ant'
-	compile group: 'org.apache.httpcomponents', name:'httpclient', version:'4.2.2'
-	compile group: 'org.apache.commons', name:'commons-io', version:'1.3.2'
+	compile "com.cyrilqc:cyrilqc-core:${version}"
+	compile libs."org.apache.ant:ant"
+	compile libs."org.apache.httpcomponents:httpclient"
+	compile libs."org.apache.commons:commons-io"
 }
 
 
