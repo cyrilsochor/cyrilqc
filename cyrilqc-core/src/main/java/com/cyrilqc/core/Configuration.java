@@ -2,6 +2,8 @@ package com.cyrilqc.core;
 
 import java.io.PrintStream;
 
+import org.apache.tools.ant.BuildLogger;
+
 public interface Configuration {
 
 	String getProjectFile();
@@ -11,6 +13,8 @@ public interface Configuration {
 	String getMultiTestTargetPrefix();
 
 	String getProjectNamePrefix();
+
+	BuildLogger getLoggingLogger() throws ClassNotFoundException, InstantiationException, IllegalAccessException;
 
 	int getLoggingLevelDefault();
 

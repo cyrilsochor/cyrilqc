@@ -8,10 +8,11 @@ import java.util.List;
 import java.util.Vector;
 
 import org.apache.tools.ant.BuildException;
-import org.apache.tools.ant.DefaultLogger;
+import org.apache.tools.ant.BuildLogger;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.ProjectHelper;
 
+import com.cyrilqc.core.exception.CyrilQCRuntimeException;
 import com.cyrilqc.core.util.StringUtils;
 
 public class CyrilQCProject {
@@ -31,7 +32,7 @@ public class CyrilQCProject {
 	private List<String> afterTestTargets;
 
 	private File projectFile;
-	private DefaultLogger consoleLogger;
+	private BuildLogger buildLogger;
 	private final LinkedList<Integer> messageOutputLevels = new LinkedList<Integer>();
 
 	public CyrilQCProject(CyrilQCEngine engine, URL projectURL) throws Exception {
@@ -43,9 +44,12 @@ public class CyrilQCProject {
 		// TODO solve universal URL
 		projectFile = new File(projectURL.getFile());
 
-		consoleLogger = new DefaultLogger();
-		consoleLogger.setOutputPrintStream(engine.getConfiguration().getOutputPrintStream());
-		consoleLogger.setErrorPrintStream(engine.getConfiguration().getErrorPrintStream());
+		buildLogger = engine.getConfiguration().getLoggingLogger();
+		if (buildLogger == null) {
+			throw new CyrilQCRuntimeException("Build logger not configured");
+		}
+		buildLogger.setOutputPrintStream(engine.getConfiguration().getOutputPrintStream());
+		buildLogger.setErrorPrintStream(engine.getConfiguration().getErrorPrintStream());
 
 		this.defaultAntProject = prepareAntProject();
 
@@ -92,7 +96,7 @@ public class CyrilQCProject {
 		final CyrilQCRuntimeHelper cyrilQCRuntimeHelper = new CyrilQCRuntimeHelper(this);
 
 		setMessageOutputLevel(engine.getConfiguration().getLoggingLevelDefault());
-		antProject.addBuildListener(consoleLogger);
+		antProject.addBuildListener(buildLogger);
 
 		antProject.setUserProperty("ant.file", projectFile.getAbsolutePath());
 		antProject.setProperty("name", "CyrilQC");
@@ -282,7 +286,7 @@ public class CyrilQCProject {
 	public void setMessageOutputLevel(int msgLevel) {
 		synchronized (messageOutputLevels) {
 			messageOutputLevels.add(msgLevel);
-			consoleLogger.setMessageOutputLevel(msgLevel);
+			buildLogger.setMessageOutputLevel(msgLevel);
 		}
 	}
 
@@ -290,7 +294,7 @@ public class CyrilQCProject {
 		synchronized (messageOutputLevels) {
 			messageOutputLevels.removeLast();
 			final Integer msgLevel = messageOutputLevels.getLast();
-			consoleLogger.setMessageOutputLevel(msgLevel);
+			buildLogger.setMessageOutputLevel(msgLevel);
 		}
 	}
 

@@ -9,8 +9,11 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Properties;
 
+import org.apache.tools.ant.BuildLogger;
+
 import com.cyrilqc.core.util.ConvertUtils;
 import com.cyrilqc.core.util.StreamUtils;
+import com.cyrilqc.core.util.StringUtils;
 
 public class DefaultConfiguration implements Configuration {
 	private static final String SYSTEM_PROPERTY_PREFIX = "cyrilqc.";
@@ -67,6 +70,10 @@ public class DefaultConfiguration implements Configuration {
 
 	public String getProjectNamePrefix() {
 		return getProperty("project.name.prefix");
+	}
+
+	public BuildLogger getLoggingLogger() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+		return (BuildLogger) getObjectPropery("logging.logger");
 	}
 
 	public int getLoggingLevelDefault() {
@@ -163,6 +170,16 @@ public class DefaultConfiguration implements Configuration {
 
 	private PrintStream getPrintStream(String key) {
 		return ConvertUtils.parsePrintStream(getProperty(key));
+	}
+
+	private Object getObjectPropery(String key) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+		final String className = getProperty(key);
+		if (StringUtils.isEmpty(className)) {
+			return null;
+		} else {
+			final Class<?> clazz = Class.forName(className);
+			return clazz.newInstance();
+		}
 	}
 
 }

@@ -12,6 +12,7 @@ mainClassName = "com.cyrilqc.runner.CyrilQC"
 dependencies {
     compile libs."junit:junit"
 	compile libs."org.apache.ant:ant"
+	compile 'org.slf4j:slf4j-api:1.7.6'
 	runtime libs."org.apache.ant:ant-junit"  
 	runtime libs."org.apache.ant:ant-junit4"
 	runtime libs."org.apache.ant:ant-jsch"
@@ -20,6 +21,7 @@ dependencies {
 	runtime libs."org.apache.ant:ant-apache-bcel"
 	runtime libs."org.apache.ant:ant-apache-xalan2"
 	runtime libs."ant-contrib:ant-contrib"
+	runtime 'org.slf4j:slf4j-log4j12:1.7.6'
 }
 
 
