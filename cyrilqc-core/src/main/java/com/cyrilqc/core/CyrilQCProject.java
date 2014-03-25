@@ -3,9 +3,14 @@ package com.cyrilqc.core;
 import java.io.File;
 import java.net.URL;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.BuildLogger;
@@ -25,7 +30,8 @@ public class CyrilQCProject {
 
 	private Project defaultAntProject;
 
-	private List<CyrilQCTest> tests;
+	private List<CyrilQCTest> allTests;
+	private List<CyrilQCTest> enabledTests;
 	private List<String> beforeModuleTargets;
 	private List<String> afterModuleTargets;
 	private List<String> beforeTestTargets;
@@ -63,8 +69,9 @@ public class CyrilQCProject {
 		}
 
 		scanProject();
-		for (final CyrilQCTest test : tests) {
-			logBannerLine("Found " + test.getName());
+		for (final CyrilQCTest test : allTests) {
+			final String suffix = enabledTests.contains(test) ? "" : " (excluded)";
+			logBannerLine("Found " + test.getName() + suffix);
 		}
 
 		logBannerStartEnd();
@@ -82,7 +89,7 @@ public class CyrilQCProject {
 	}
 
 	public List<CyrilQCTest> getTests() {
-		return tests;
+		return enabledTests;
 	}
 
 	protected org.apache.tools.ant.Project getAntCleanProject() throws Exception {
@@ -121,7 +128,7 @@ public class CyrilQCProject {
 	private void scanProject() throws Exception {
 		final Project antProject = getAntCleanProject();
 
-		tests = new LinkedList<CyrilQCTest>();
+		allTests = new LinkedList<CyrilQCTest>();
 		beforeModuleTargets = new LinkedList<String>();
 		afterModuleTargets = new LinkedList<String>();
 		beforeTestTargets = new LinkedList<String>();
@@ -151,7 +158,59 @@ public class CyrilQCProject {
 			scanTargetForMultiTest(antProject, targetName);
 		}
 
-		Collections.sort(tests, new CyrilQCTestNameComparator());
+		Collections.sort(allTests, new CyrilQCTestNameComparator());
+
+		enabledTests = filterTests(allTests);
+
+	}
+
+	protected List<CyrilQCTest> filterTests(List<CyrilQCTest> tests) {
+		final List<CyrilQCTest> ret = new LinkedList<CyrilQCTest>();
+		ret.addAll(tests);
+
+		if (null != getEngine().getConfiguration().getTestsInclude()) {
+			final Pattern includePattern = Pattern.compile(getEngine().getConfiguration().getTestsInclude());
+			for (Iterator<CyrilQCTest> it = ret.iterator(); it.hasNext();) {
+				final CyrilQCTest test = it.next();
+				final Matcher matcher = includePattern.matcher(test.getName());
+				if (!matcher.matches()) {
+					it.remove();
+				}
+			}
+		}
+
+		if (null != getEngine().getConfiguration().getTestsExclude()) {
+			final Pattern excludePattern = Pattern.compile(getEngine().getConfiguration().getTestsExclude());
+			for (Iterator<CyrilQCTest> it = ret.iterator(); it.hasNext();) {
+				final CyrilQCTest test = it.next();
+				final Matcher matcher = excludePattern.matcher(test.getName());
+				if (matcher.matches()) {
+					it.remove();
+				}
+			}
+		}
+
+		final List<String> configredTests = getEngine().getConfiguration().getTests();
+		if (!configredTests.isEmpty()) {
+
+			final Map<String, CyrilQCTest> m = new HashMap<String, CyrilQCTest>();
+			for (CyrilQCTest test : ret) {
+				m.put(test.getName(), test);
+			}
+
+			ret.clear();
+			for (String testName : configredTests) {
+				final CyrilQCTest test = m.get(testName);
+				if (test == null) {
+					throw new CyrilQCRuntimeException("Test '" + testName + "' not found");
+				} else {
+					ret.add(test);
+				}
+			}
+
+		}
+
+		return ret;
 	}
 
 	protected void scanTargetForMultiTest(final Project antProject, final String targetName) {
@@ -165,7 +224,7 @@ public class CyrilQCProject {
 
 	void addTest(final String targetName, final boolean multi, final String name) {
 		final CyrilQCTest test = new CyrilQCTest(this, targetName, multi, name);
-		tests.add(test);
+		allTests.add(test);
 	}
 
 	void run(CyrilQCTest test) throws Exception {

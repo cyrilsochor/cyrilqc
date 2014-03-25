@@ -1,6 +1,7 @@
 package com.cyrilqc.core;
 
 import java.io.PrintStream;
+import java.util.List;
 
 import org.apache.tools.ant.BuildLogger;
 
@@ -39,5 +40,11 @@ public interface Configuration {
 	PrintStream getOutputPrintStream();
 
 	PrintStream getErrorPrintStream();
+
+	List<String> getTests();
+
+	String getTestsInclude();
+
+	String getTestsExclude();
 
 }

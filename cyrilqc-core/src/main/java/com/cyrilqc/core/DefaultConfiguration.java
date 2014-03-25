@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.tools.ant.BuildLogger;
@@ -108,7 +109,19 @@ public class DefaultConfiguration implements Configuration {
 		return getPrintStream("error.stream");
 	}
 
-	private String getProperty(String key) {
+	public List<String> getTests() {
+		return ConvertUtils.parseList(getProperty("tests"));
+	}
+
+	public String getTestsInclude() {
+		return getTrimmedProperty("tests.include");
+	}
+
+	public String getTestsExclude() {
+		return getTrimmedProperty("tests.exclude");
+	}
+
+	protected String getProperty(String key) {
 		String ret = null;
 
 		if (ret == null) {
@@ -130,55 +143,63 @@ public class DefaultConfiguration implements Configuration {
 		return ret;
 	}
 
-	private char getCharProperty(String key) {
+	protected char getCharProperty(String key) {
 		return ConvertUtils.parseCharacter(getProperty(key));
 	}
 
-	@SuppressWarnings("unused")
-	private Boolean getBooleanProperty(String key) {
+	protected Boolean getBooleanProperty(String key) {
 		return ConvertUtils.parseBoolean(getProperty(key));
 	}
 
-	private Integer getIntegerPropery(String key) {
+	protected Integer getIntegerPropery(String key) {
 		return ConvertUtils.parseInteger(getProperty(key));
 	}
 
-	@SuppressWarnings("unused")
-	private Long getLongProperty(String key) {
+	protected Long getLongProperty(String key) {
 		return ConvertUtils.parseLong(getProperty(key));
 	}
 
-	@SuppressWarnings("unused")
-	private Double getDoubleProperty(String key) {
+	protected Double getDoubleProperty(String key) {
 		return ConvertUtils.parseDouble(getProperty(key));
 	}
 
-	@SuppressWarnings("unused")
-	private Float getFloatProperty(String key) {
+	protected Float getFloatProperty(String key) {
 		return ConvertUtils.parseFloat(getProperty(key));
 	}
 
-	@SuppressWarnings("unused")
-	private BigDecimal getBigDecimalProperty(String key) {
+	protected BigDecimal getBigDecimalProperty(String key) {
 		return ConvertUtils.parseBigDecimal(getProperty(key));
 	}
 
-	@SuppressWarnings("unused")
-	private BigInteger getBigIntegerProperty(String key) {
+	protected BigInteger getBigIntegerProperty(String key) {
 		return ConvertUtils.parseBigInteger(getProperty(key));
 	}
 
-	private PrintStream getPrintStream(String key) {
+	protected PrintStream getPrintStream(String key) {
 		return ConvertUtils.parsePrintStream(getProperty(key));
 	}
 
-	private Object getObjectPropery(String key) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+	protected Object getObjectPropery(String key) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		final String className = getProperty(key);
 		if (StringUtils.isEmpty(className)) {
 			return null;
 		} else {
 			final Class<?> clazz = Class.forName(className);
 			return clazz.newInstance();
+		}
+	}
+
+	protected String getTrimmedProperty(String key) {
+		final String value = getProperty(key);
+		if (value == null) {
+			return null;
+		}
+
+		final String trimmed = value.trim();
+		if (trimmed.length() == 0) {
+			return null;
+		} else {
+			return trimmed;
 		}
 	}
 

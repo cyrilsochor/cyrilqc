@@ -6,8 +6,11 @@ import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
@@ -265,4 +268,19 @@ public class ConvertUtils {
 		return ret.multiply(multi);
 	}
 
+	public static List<String> parseList(String input) {
+		if (input == null) {
+			return Collections.emptyList();
+		}
+
+		final List<String> ret = new LinkedList<String>();
+		final String[] parts = input.split(",");
+		for (String part : parts) {
+			final String norm = part.trim();
+			if (norm.length() != 0) {
+				ret.add(norm);
+			}
+		}
+		return ret;
+	}
 }

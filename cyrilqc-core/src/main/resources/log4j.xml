@@ -7,7 +7,7 @@
 	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
 		<param name="Target" value="System.out" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d{ISO8601}[%12.12t] %35.35c{1} %5p: %m%n" />
+			<param name="ConversionPattern" value="%d{ISO8601}[%12.12t]%25.25c{1} %5p: %m%n" />
 		</layout>
 	</appender>
 
@@ -16,7 +16,7 @@
 		<param name="append" value="false" />
 		<param name="encoding" value="UTF-8" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d{ISO8601}[%12.12t] %35.35c{1} %5p: %m%n" />
+			<param name="ConversionPattern" value="%d{ISO8601}[%12.12t]%25.25c{1} %5p: %m%n" />
 		</layout>
 	</appender>
 
