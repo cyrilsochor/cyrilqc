@@ -1,6 +1,6 @@
-Cyril Quality Centre
+Cyril Quality Centre - CyrilQC
 --------------------
-Integration test framework
+An integration testing framework
 
 Build
 -----

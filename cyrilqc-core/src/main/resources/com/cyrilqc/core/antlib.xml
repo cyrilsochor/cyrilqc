@@ -3,7 +3,7 @@
 
 <taskdef name="test" classname="com.cyrilqc.core.task.TestTask" />
 
-<taskdef name="assert" classname="com.cyrilqc.core.task.AssertTask" />
+<taskdef name="assertcondition" classname="com.cyrilqc.core.task.AssertTask" />
 <taskdef name="assertequals" classname="com.cyrilqc.core.task.AssertEqualsTask" />
 <taskdef name="assertfileequals" classname="com.cyrilqc.core.task.AssertFileEqualsTask" />
 <taskdef name="assertfile" classname="com.cyrilqc.core.task.AssertFileTask" />
