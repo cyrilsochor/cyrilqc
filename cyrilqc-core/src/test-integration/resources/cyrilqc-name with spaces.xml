@@ -1,0 +1,5 @@
+<project>
+	<target name="test with spaces">
+		<echo>:-)</echo>
+	</target>
+</project>

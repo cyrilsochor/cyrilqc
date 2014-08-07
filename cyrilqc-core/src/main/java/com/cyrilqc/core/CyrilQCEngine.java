@@ -3,8 +3,6 @@ package com.cyrilqc.core;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import com.cyrilqc.core.exception.CyrilQCRuntimeException;
 
@@ -30,25 +28,21 @@ public class CyrilQCEngine {
 		return configuration;
 	}
 
-	public URL getProjectURL() {
+	public File getProjectFile() {
 		final File projectFile = new File(configuration.getProjectFile());
 		if (!projectFile.exists()) {
 			throw new CyrilQCRuntimeException("Project file " + projectFile.getAbsolutePath() + " not found");
 		}
 
-		try {
-			return projectFile.toURI().toURL();
-		} catch (final MalformedURLException e) {
-			throw new CyrilQCRuntimeException("Invalid project file " + projectFile.getAbsolutePath(), e);
-		}
+		return projectFile;
 	}
 
 	public CyrilQCProject getProject() throws Exception {
 		if (project == null) {
 			synchronized (this) {
 				if (project == null) {
-					final URL projectURL = getProjectURL();
-					project = new CyrilQCProject(this, projectURL);
+					final File projectFile = getProjectFile();
+					project = new CyrilQCProject(this, projectFile);
 					project.init();
 				}
 			}

@@ -1,7 +1,6 @@
 package com.cyrilqc.core;
 
 import java.io.File;
-import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -26,8 +25,7 @@ public class CyrilQCProject {
 	private static final String TEST_NAME_KEY = "TEST_NAME";
 
 	private final CyrilQCEngine engine;
-	private final URL projectURL;
-
+	private File projectFile;
 	private Project defaultAntProject;
 
 	private List<CyrilQCTest> allTests;
@@ -37,19 +35,15 @@ public class CyrilQCProject {
 	private List<String> beforeTestTargets;
 	private List<String> afterTestTargets;
 
-	private File projectFile;
 	private BuildLogger buildLogger;
 	private final LinkedList<Integer> messageOutputLevels = new LinkedList<Integer>();
 
-	public CyrilQCProject(CyrilQCEngine engine, URL projectURL) throws Exception {
+	public CyrilQCProject(CyrilQCEngine engine, File projectFile) throws Exception {
 		this.engine = engine;
-		this.projectURL = projectURL;
+		this.projectFile = projectFile;
 	}
 
 	public void init() throws Exception {
-		// TODO solve universal URL
-		projectFile = new File(projectURL.getFile());
-
 		buildLogger = engine.getConfiguration().getLoggingLogger();
 		if (buildLogger == null) {
 			throw new CyrilQCRuntimeException("Build logger not configured");

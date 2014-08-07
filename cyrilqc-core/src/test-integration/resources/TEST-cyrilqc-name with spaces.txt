@@ -1,0 +1,21 @@
+Testsuite: com.cyrilqc.runner.junit4.CyrilQCJUnit4Test
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: X.XX sec
+------------- Standard Output ---------------
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                                   CyrilQC                                    :
+:  Loading project XXX/cyrilqc-name with spaces.xml
+:  Found test with spaces                                                      :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:                               test with spaces                               :
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+test with spaces:
+     [echo] :-)
+
+BUILD SUCCESSFUL
+Total time: X seconds
+------------- ---------------- ---------------
+
+Testcase: test with spaces took X.XX sec
